@@ -24,7 +24,6 @@ export const Navigation: React.FC<NavigationProps> = ({
   const navItems: { tab: PageTab; label: string }[] = [
     { tab: 'home', label: 'Home' },
     { tab: 'services', label: 'Services' },
-    { tab: 'works', label: 'Works' },
     { tab: 'studio', label: 'Studio' },
     { tab: 'contact', label: 'Contact' },
   ];
@@ -47,8 +46,8 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <>
-      {/* Desktop Navigation at absolute coordinates (57, 61) / (1237, 63) (>= 760px) */}
-      <div className="hidden min-[760px]:block pointer-events-none absolute inset-x-0 top-0 z-40">
+      {/* Desktop Navigation at absolute coordinates (57, 61) / (1237, 63) (>= 1024px) */}
+      <div className="hidden lg:block pointer-events-none absolute inset-x-0 top-0 z-40">
         <div className="relative mx-auto w-full max-w-[1440px]">
           {/* Brand Logo & Segmented Pill at (57, 61) */}
           <div
@@ -141,9 +140,9 @@ export const Navigation: React.FC<NavigationProps> = ({
         </div>
       </div>
 
-      {/* Mobile Header (< 760px) */}
+      {/* Mobile Header (< 1024px) */}
       <div
-        className={`min-[760px]:hidden sticky top-0 z-50 w-full backdrop-blur-md border-b px-3 py-2.5 flex items-center justify-between gap-2 transition-colors duration-300 ${
+        className={`lg:hidden sticky top-0 z-50 w-full backdrop-blur-md border-b px-2.5 py-2 flex items-center justify-between gap-1.5 overflow-hidden transition-colors duration-300 ${
           activeTab === 'home' ? 'bg-[#dadada]/95 border-black/10' : 'bg-black/95 border-white/10'
         }`}
       >
@@ -151,16 +150,16 @@ export const Navigation: React.FC<NavigationProps> = ({
         <AstroXLogo
           size="sm"
           onClick={() => onTabChange('home')}
-          className={`shrink-0 ${activeTab === 'home' ? 'text-[#111111]' : 'text-white'}`}
+          className={`shrink-0 scale-90 sm:scale-80 ${activeTab === 'home' ? 'text-[#111111]' : 'text-white'}`}
         />
 
-        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-          <div className="flex items-center bg-white/95 rounded-full p-0.5 border border-black/10 shadow-sm">
+        <div className="flex items-center gap-1 min-w-0 overflow-x-auto no-scrollbar py-0.5">
+          <div className="flex items-center bg-white/95 rounded-full p-0.5 border border-black/10 shadow-sm shrink-0">
             {navItems.map((item) => (
               <button
                 key={item.tab}
                 onClick={() => onTabChange(item.tab)}
-                className={`px-2 py-1 text-[11px] font-medium rounded-full whitespace-nowrap transition-colors ${
+                className={`px-2 py-0.5 text-[10.5px] font-medium rounded-full whitespace-nowrap transition-colors ${
                   activeTab === item.tab ? 'bg-[#111] text-white' : 'text-neutral-700 hover:text-black'
                 }`}
               >
@@ -173,9 +172,9 @@ export const Navigation: React.FC<NavigationProps> = ({
           <button
             onClick={onOpenBooking}
             aria-label="Contact AstroX"
-            className="w-8 h-8 rounded-full bg-[#111] text-white flex items-center justify-center btn-lift shrink-0 shadow-sm ml-0.5"
+            className="w-7 h-7 rounded-full bg-[#111] text-white flex items-center justify-center btn-lift shrink-0 shadow-sm ml-0.5"
           >
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>

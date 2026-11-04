@@ -97,21 +97,20 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ id = 'manife
       ref={sectionRef}
       className="relative w-full bg-[#000000] text-[#f4f4f4] select-none"
       style={{
-        paddingTop: 'clamp(80px, calc(170 * var(--u)), 170px)',
-        paddingBottom: 'clamp(90px, calc(230 * var(--u)), 230px)',
+        paddingTop: 'clamp(24px, calc(30 * var(--u)), 50px)',
+        paddingBottom: 'clamp(24px, calc(30 * var(--u)), 50px)',
       }}
     >
-      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-10 flex flex-col items-center">
+      <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 md:px-10 flex flex-col items-center">
         
         {/* Centred Statement */}
         <div
-          className="text-center font-archivo tracking-[-0.028em] leading-[1.33]"
+          className="text-2xl sm:text-4xl md:text-[52px] text-center font-archivo tracking-[-0.028em] leading-[1.35] w-full"
           style={{
-            maxWidth: 'min(830px, calc(830 * var(--u)))',
-            fontSize: 'clamp(24px, calc(52 * var(--u)), 52px)',
+            maxWidth: 'min(830px, 100%)',
           }}
         >
-          <p className="flex flex-wrap justify-center gap-x-[0.28em] gap-y-1">
+          <p className="flex flex-wrap justify-center gap-x-[0.25em] gap-y-2">
             {STATEMENT_TEXT.map((word, idx) => (
               <span
                 key={idx}
@@ -126,13 +125,13 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ id = 'manife
           </p>
         </div>
 
-        {/* Sub-line: 150u below statement */}
+        {/* Sub-line */}
         <div
-          className="text-center font-inter-tight font-medium"
+          className="text-center font-inter-tight font-medium max-w-md px-4"
           style={{
-            marginTop: 'clamp(60px, calc(150 * var(--u)), 150px)',
-            fontSize: 'clamp(15px, calc(23 * var(--u)), 23px)',
-            lineHeight: 1.45,
+            marginTop: 'clamp(44px, calc(120 * var(--u)), 150px)',
+            fontSize: 'clamp(14px, calc(20 * var(--u)), 23px)',
+            lineHeight: 1.5,
           }}
         >
           <p className="text-[#f4f4f4]">

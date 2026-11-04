@@ -8,11 +8,11 @@ interface StudioViewProps {
 
 export const StudioView: React.FC<StudioViewProps> = ({ onOpenBooking }) => {
   return (
-    <div className="w-full bg-black text-[#f4f4f4] min-h-screen pt-[calc(140*var(--u))] md:pt-[calc(150*var(--u))] pb-20 px-4 md:px-12">
+    <div className="w-full bg-black text-[#f4f4f4] min-h-screen pt-4 lg:pt-[calc(140*var(--u))] pb-10 px-4 md:px-12">
       <div className="max-w-[1440px] mx-auto">
         
         {/* Editorial Headline */}
-        <div className="border-b border-white/14 pb-12">
+        <div className="border-b border-white/14 pb-4 lg:pb-12">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-neutral-400 mb-4">
             <span>AstroX Studio Profile</span>
             <span>·</span>
@@ -36,7 +36,7 @@ export const StudioView: React.FC<StudioViewProps> = ({ onOpenBooking }) => {
         </div>
 
         {/* Company Profile Bento */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-4 lg:mt-12">
           
           <div className="bg-neutral-950 p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
             <span className="text-xs font-mono uppercase text-neutral-500">Established</span>
@@ -65,7 +65,9 @@ export const StudioView: React.FC<StudioViewProps> = ({ onOpenBooking }) => {
           <div className="bg-neutral-950 p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
             <span className="text-xs font-mono uppercase text-neutral-500">Team Scale</span>
             <div className="mt-4">
-              <div className="archivo-display text-4xl font-bold text-white">{ASTROX_PROFILE.size}</div>
+              <div className="archivo-display text-2xl md:text-3xl xl:text-4xl font-bold text-white whitespace-normal leading-tight break-words">
+                {ASTROX_PROFILE.size}
+              </div>
               <div className="text-xs text-neutral-400 mt-1">Specialized elite squad</div>
             </div>
           </div>
@@ -73,7 +75,7 @@ export const StudioView: React.FC<StudioViewProps> = ({ onOpenBooking }) => {
         </div>
 
         {/* Deep Dive: Philosophy & Office */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-4 lg:mt-12">
           
           {/* Philosophy Section (7 cols) */}
           <div className="lg:col-span-7 bg-neutral-950 p-8 md:p-12 rounded-2xl border border-white/12">
@@ -97,7 +99,7 @@ export const StudioView: React.FC<StudioViewProps> = ({ onOpenBooking }) => {
             </div>
 
             {/* Core Values */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-6 border-t border-white/10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4 lg:mt-8 pt-4 lg:pt-6 border-t border-white/10">
               <div>
                 <span className="text-xs font-mono uppercase text-neutral-400 block">01. Precision</span>
                 <p className="text-xs text-neutral-300 mt-1">Zero wasted spend; meticulous tracking.</p>
@@ -179,7 +181,7 @@ export const StudioView: React.FC<StudioViewProps> = ({ onOpenBooking }) => {
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-white/10">
+            <div className="mt-4 lg:mt-8 pt-4 lg:pt-6 border-t border-white/10">
               <button
                 onClick={onOpenBooking}
                 className="w-full py-3.5 bg-white text-black hover:bg-neutral-200 rounded-full font-semibold text-sm flex items-center justify-center gap-2 btn-lift shadow-lg cursor-pointer"

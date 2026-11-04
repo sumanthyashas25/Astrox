@@ -8,7 +8,7 @@ interface BarSectionProps {
 export const BarSection: React.FC<BarSectionProps> = ({ onScrollToManifesto }) => {
   return (
     <div className="w-full bg-[#000000] border-b border-[rgba(255,255,255,0.14)] select-none">
-      <div className="mx-auto w-full max-w-[1440px] h-[calc(111*var(--u))] min-h-[58px] px-4 sm:px-6 md:px-10 lg:px-14 flex items-center justify-between">
+      <div className="mx-auto w-full max-w-[1440px] h-[calc(40*var(--u))] min-h-[40px] px-4 sm:px-6 md:px-10 lg:px-14 flex items-center justify-between">
         
         {/* Left: EST 2025 (year in grey) */}
         <div className="archivo-wide text-[calc(14*var(--u))] text-xs md:text-[calc(14*var(--u))] tracking-[0.14em] uppercase font-semibold">

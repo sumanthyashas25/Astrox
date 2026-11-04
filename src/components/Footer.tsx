@@ -77,11 +77,7 @@ export const Footer: React.FC<FooterProps> = ({ onTabChange, onOpenBooking }) =>
                   Capabilities & Services
                 </button>
               </li>
-              <li>
-                <button onClick={() => onTabChange('works')} className="hover:text-white transition-colors cursor-pointer">
-                  Case Studies & Works
-                </button>
-              </li>
+
               <li>
                 <button onClick={() => onTabChange('studio')} className="hover:text-white transition-colors cursor-pointer">
                   Studio & Bengaluru HQ

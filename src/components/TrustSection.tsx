@@ -10,8 +10,6 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
   const panelRef = useRef<HTMLDivElement>(null);
   const [hasAnimated, setHasAnimated] = useState<boolean>(false);
   const [collabCount, setCollabCount] = useState<number>(0);
-  const [awardCount, setAwardCount] = useState<number>(0);
-  const [awardsLifted, setAwardsLifted] = useState<boolean>(false);
   const [isReducedMotion, setIsReducedMotion] = useState<boolean>(false);
 
   useEffect(() => {
@@ -19,7 +17,6 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
     if (mediaQuery.matches) {
       setIsReducedMotion(true);
       setCollabCount(56);
-      setAwardCount(10);
       setHasAnimated(true);
       return;
     }
@@ -36,20 +33,13 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
           const p = Math.min(1, (now - startTime) / duration);
           const ease = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
           setCollabCount(Math.round(ease * 56));
-          setAwardCount(Math.round(ease * 10));
           if (p < 1) requestAnimationFrame(anim);
         };
         requestAnimationFrame(anim);
       }, 3500);
 
-      // 5.3s awards card lift
-      const timer2 = setTimeout(() => {
-        setAwardsLifted(true);
-      }, 5300);
-
       return () => {
         clearTimeout(timer1);
-        clearTimeout(timer2);
       };
     } else {
       // Regular scroll-driven Intersection Observer
@@ -63,7 +53,6 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
               const p = Math.min(1, (now - startTime) / duration);
               const ease = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
               setCollabCount(Math.round(ease * 56));
-              setAwardCount(Math.round(ease * 10));
               if (p < 1) requestAnimationFrame(anim);
             };
             requestAnimationFrame(anim);
@@ -85,7 +74,7 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
       id={id}
       className="relative w-full bg-[#000000] text-[#f4f4f4] select-none"
       style={{
-        paddingBottom: 'calc(150 * var(--u))',
+        paddingBottom: 'calc(25 * var(--u))',
       }}
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 md:px-[calc(69*var(--u))]">
@@ -102,14 +91,14 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.05),transparent_70%)] pointer-events-none" />
 
           {/* Left Column: Heading + Frosted Overlapping Glass Icon Tiles + Paragraph */}
-          <div className="relative z-10 w-full lg:max-w-[calc(440*var(--u))]">
+          <div className="relative z-10 w-full lg:max-w-[calc(500*var(--u))]">
             
             {/* Heading with 2 Overlapping Glass Icon Tiles */}
             <div className="relative inline-block">
               <h2
-                className="font-archivo text-[#f4f4f4] font-medium leading-[1.08] tracking-[-0.03em]"
+                className="font-archivo text-[#f4f4f4] font-medium leading-[1.08] tracking-[-0.03em] whitespace-nowrap"
                 style={{
-                  fontSize: 'calc(55 * var(--u))',
+                  fontSize: 'calc(48 * var(--u))',
                 }}
               >
                 Trusted by<br />
@@ -118,36 +107,6 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
                 Businesses
               </h2>
 
-              {/* Glass Tile 1: Asterisk tile top right of line 1 (88u, 12u radius, backdrop blur) */}
-              <div
-                className="glass-tile absolute rounded-[calc(12*var(--u))] flex items-center justify-center text-white shadow-xl pointer-events-none"
-                style={{
-                  width: 'calc(88 * var(--u))',
-                  height: 'calc(88 * var(--u))',
-                  top: 'calc(-14 * var(--u))',
-                  right: 'calc(-68 * var(--u))',
-                }}
-              >
-                <span className="font-archivo text-[calc(42*var(--u))] font-light">✱</span>
-              </div>
-
-              {/* Glass Tile 2: Four-dot tile over "Businesses" (hidden on phone <= 760px) */}
-              <div
-                className="glass-tile hidden md:flex absolute rounded-[calc(12*var(--u))] items-center justify-center text-white shadow-xl pointer-events-none"
-                style={{
-                  width: 'calc(88 * var(--u))',
-                  height: 'calc(88 * var(--u))',
-                  bottom: 'calc(-22 * var(--u))',
-                  right: 'calc(-40 * var(--u))',
-                }}
-              >
-                <div className="grid grid-cols-2 gap-[calc(8*var(--u))]">
-                  <div className="w-[calc(8*var(--u))] h-[calc(8*var(--u))] rounded-full bg-white" />
-                  <div className="w-[calc(8*var(--u))] h-[calc(8*var(--u))] rounded-full bg-white/70" />
-                  <div className="w-[calc(8*var(--u))] h-[calc(8*var(--u))] rounded-full bg-white/70" />
-                  <div className="w-[calc(8*var(--u))] h-[calc(8*var(--u))] rounded-full bg-white" />
-                </div>
-              </div>
             </div>
 
             {/* Three-line paragraph, 14.5u font */}
@@ -194,6 +153,8 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
                         alt={`Partner ${i + 1}`}
                         className="w-full h-full object-cover filter grayscale contrast-125"
                         referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   ))}
@@ -216,50 +177,7 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
               </div>
             </div>
 
-            {/* Awards Card: #262626 */}
-            <div
-              className={`card-lift bg-[#262626] text-white rounded-[calc(8*var(--u))] p-5 lg:p-[calc(20*var(--u))] flex flex-col justify-between border border-white/10 shadow-xl cursor-default transition-transform duration-500 w-full md:w-[280px] lg:w-[calc(298*var(--u))] min-h-[300px] lg:min-h-[326px] ${
-                awardsLifted ? '-translate-y-[calc(6*var(--u))] shadow-[0_20px_40px_rgba(0,0,0,0.5)]' : ''
-              }`}
-            >
-              <div>
-                <div className="text-[calc(11.5*var(--u))] font-semibold uppercase tracking-wider text-neutral-400">
-                  Recognition
-                </div>
-                
-                {/* 10+ / Industry Awards */}
-                <div className="mt-[calc(8*var(--u))]">
-                  <div className="archivo-wide text-[calc(38*var(--u))] font-bold leading-none text-white">
-                    {awardCount}+
-                  </div>
-                  <div className="text-[calc(13*var(--u))] text-neutral-400 font-medium mt-1">
-                    Industry Awards
-                  </div>
-                </div>
 
-                {/* SVG Laurel Badge "BEST GROWTH PARTNER 2026" */}
-                <div className="mt-[calc(18*var(--u))] p-[calc(12*var(--u))] bg-black/40 rounded-[calc(6*var(--u))] border border-white/10 flex items-center gap-[calc(10*var(--u))]">
-                  <svg
-                    className="w-[calc(32*var(--u))] h-[calc(32*var(--u))] text-white/90 shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                  >
-                    <path d="M12 2l2.4 5 5.6.8-4 4 1 5.6-5-2.6-5 2.6 1-5.6-4-4 5.6-.8z" />
-                    <circle cx="12" cy="12" r="9" strokeDasharray="2 2" />
-                  </svg>
-                  <div className="text-[calc(9.5*var(--u))] font-mono tracking-wider text-white/90 uppercase leading-snug">
-                    BEST GROWTH PARTNER 2026
-                  </div>
-                </div>
-              </div>
-
-              {/* Two-line note */}
-              <p className="text-[calc(11.5*var(--u))] text-neutral-400 leading-snug mt-auto pt-[calc(10*var(--u))] border-t border-white/10">
-                Honored across APAC for surgical conversion rates and exponential client revenue scaling.
-              </p>
-            </div>
 
             {/* Portrait Card: 200u wide, cut off by panel's right edge */}
             <div
@@ -275,6 +193,8 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
                 alt="Portrait card profile"
                 className="w-full h-full object-cover filter contrast-110"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               <div className="absolute bottom-[calc(14*var(--u))] left-[calc(14*var(--u))] right-[calc(14*var(--u))] text-white">

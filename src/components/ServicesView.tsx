@@ -29,11 +29,11 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenBookingWithSer
   };
 
   return (
-    <div className="w-full bg-black text-[#f4f4f4] min-h-screen pt-[calc(140*var(--u))] md:pt-[calc(150*var(--u))] pb-20 px-4 md:px-12">
+    <div className="w-full bg-black text-[#f4f4f4] min-h-screen pt-4 lg:pt-[calc(140*var(--u))] pb-10 px-4 md:px-12">
       <div className="max-w-[1440px] mx-auto">
         
         {/* Editorial Header */}
-        <div className="border-b border-white/14 pb-12">
+        <div className="border-b border-white/14 pb-3 lg:pb-12">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-neutral-400 mb-4">
             <span>AstroX Capabilities</span>
             <span>·</span>
@@ -43,7 +43,10 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenBookingWithSer
           </div>
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <h1 className="archivo-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-[0.95]">
+            <h1 
+              className="archivo-display text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-[0.95] max-w-4xl"
+              style={{ textWrap: 'balance' } as React.CSSProperties}
+            >
               SURGICAL<br />CAPABILITIES
             </h1>
             <p className="max-w-md font-inter-tight text-neutral-400 text-sm sm:text-base leading-relaxed">
@@ -52,7 +55,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenBookingWithSer
           </div>
 
           {/* Interactive Category Tabs */}
-          <div className="flex flex-wrap items-center gap-2 mt-10">
+          <div className="flex flex-wrap items-center gap-2 mt-4 lg:mt-10">
             {categories.map((cat) => (
               <button
                 key={cat.id}
@@ -70,7 +73,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenBookingWithSer
         </div>
 
         {/* Services Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-4 lg:mt-12">
           {filteredServices.map((service, index) => {
             const isSelected = selectedServices.includes(service.id);
             return (
@@ -84,9 +87,9 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenBookingWithSer
               >
                 {/* Header with numbering & category */}
                 <div>
-                  <div className="flex items-center justify-between text-xs font-mono uppercase text-neutral-500 pb-4 border-b border-white/10">
-                    <span>{String(index + 1).padStart(2, '0')}.</span>
-                    <span className="tracking-widest">{service.category}</span>
+                  <div className="flex items-center justify-between text-xs font-mono uppercase text-neutral-500 pb-4 border-b border-white/10 gap-2">
+                    <span className="shrink-0">{String(index + 1).padStart(2, '0')}.</span>
+                    <span className="tracking-widest truncate text-right">{service.category}</span>
                   </div>
 
                   <h3 className="archivo-wide text-2xl font-bold text-white mt-4 tracking-tight group-hover:text-neutral-100">
@@ -150,7 +153,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenBookingWithSer
         </div>
 
         {/* Interactive Scope & Growth Estimator Bar */}
-        <div className="mt-16 bg-neutral-950 border border-white/20 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-4 lg:mt-16 bg-neutral-950 border border-white/20 rounded-2xl p-6 lg:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white shrink-0">
               <Calculator className="w-6 h-6" />

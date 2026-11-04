@@ -6,7 +6,6 @@ import { BarSection } from './components/BarSection';
 import { ManifestoSection } from './components/ManifestoSection';
 import { TrustSection } from './components/TrustSection';
 import { ServicesView } from './components/ServicesView';
-import { WorksView } from './components/WorksView';
 import { StudioView } from './components/StudioView';
 import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
@@ -92,12 +91,6 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'works' && (
-          <WorksView
-            onOpenBooking={() => handleOpenBooking()}
-            onSelectCaseStudy={(id) => setSelectedCaseId(id)}
-          />
-        )}
 
         {activeTab === 'studio' && (
           <StudioView onOpenBooking={() => handleOpenBooking()} />

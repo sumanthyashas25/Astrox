@@ -13,7 +13,19 @@
   --hairline-28: rgba(255, 255, 255, 0.28);
 }
 
-@media (max-width: 760px) {
+@media (min-width: 1024px) {
+  :root {
+    --u: min(100vw / 1440, 1px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --u: calc(100vw / 768);
+  }
+}
+
+@media (max-width: 767px) {
   :root {
     --u: calc(100vw / 390);
   }

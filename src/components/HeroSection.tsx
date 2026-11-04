@@ -32,8 +32,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       // easeOutExpo
       const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
 
-      setPartnerCount(Math.round(ease * 400));
-      setProjectCount(Math.round(ease * 230));
+      setPartnerCount(Math.round(ease * 50));
+      setProjectCount(Math.round(ease * 75));
 
       if (progress < 1) {
         requestAnimationFrame(frame);
@@ -49,8 +49,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section className="relative w-full bg-[#dadada] text-[#111111] overflow-hidden select-none">
-      {/* 1440 Desktop Canvas Container (>= 760px) */}
-      <div className="relative mx-auto w-full max-w-[1440px] h-[calc(938*var(--u))] hidden min-[760px]:block">
+      {/* 1440 Desktop Canvas Container (>= 1024px) */}
+      <div className="relative mx-auto w-full max-w-[1440px] h-[calc(820*var(--u))] hidden lg:block">
         
         {/* Moon Behind the Person: Left 450u, Top 65u, 580 x 580u */}
         <div
@@ -70,6 +70,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             alt="Glowing moon behind astronaut"
             className="w-full h-full object-contain animate-moon-aura"
             referrerPolicy="no-referrer"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         </div>
 
@@ -92,6 +95,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               alt="Astronaut floating in front of the moon"
               className="w-full h-full object-contain filter contrast-110 drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
               referrerPolicy="no-referrer"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
             />
           </div>
         </div>
@@ -215,6 +221,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 alt="Studio creator"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 pointer-events-none" />
 
@@ -316,6 +324,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   transformOrigin: '62% 45%',
                 }}
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
@@ -344,8 +354,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       </div>
 
-      {/* Responsive Grid Layout (< 760px) */}
-      <div className="min-[760px]:hidden px-4 py-8 sm:py-10 grid grid-cols-1 gap-8 w-full max-w-lg mx-auto">
+      {/* Responsive Grid Layout (< 1024px) */}
+      <div className="lg:hidden px-4 py-4 md:py-6 grid grid-cols-1 gap-5 w-full max-w-lg mx-auto">
         
         {/* Brand Elements (Centered) */}
         <div className="flex flex-col items-center text-center gap-3 w-full">
@@ -389,33 +399,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* Responsive Visual Grid: Person and Moon visuals stacked vertically with zero layout shift */}
-        <div className="grid grid-cols-1 gap-4 w-full">
-          {/* Person (Astronaut) Visual Card */}
-          <div className="relative w-full aspect-square max-w-[340px] mx-auto rounded-2xl bg-gradient-to-b from-[#e2e2e2] to-[#cfcfcf] border border-neutral-300 shadow-md overflow-hidden flex items-center justify-center">
-            <img
-              src={MEDIA_ASSETS.person}
-              alt="AstroX Floating Astronaut"
-              width={340}
-              height={340}
-              className="w-full h-full object-contain p-4 animate-float-person filter contrast-105 drop-shadow-xl"
-              referrerPolicy="no-referrer"
-              loading="eager"
-              decoding="async"
-            />
-          </div>
-
-          {/* Moon Visual Card */}
-          <div className="relative w-full aspect-square max-w-[340px] mx-auto rounded-2xl bg-gradient-to-b from-[#cfcfcf] to-[#dadada] border border-neutral-300 shadow-md overflow-hidden flex items-center justify-center">
+        {/* Composite Visual Showcase (Moon Behind, Astronaut in Front) */}
+        <div className="relative w-full h-[400px] md:h-[500px] max-w-[380px] md:max-w-[480px] mx-auto overflow-hidden flex items-center justify-center">
+          {/* Moon Behind */}
+          <div className="absolute w-[280px] h-[280px] md:w-[380px] md:h-[380px] z-10 pointer-events-none flex items-center justify-center">
             <img
               src={MEDIA_ASSETS.moon}
               alt="Glowing Moon"
-              width={340}
-              height={340}
-              className="w-full h-full object-contain p-4 animate-moon-aura drop-shadow-lg"
+              className="w-full h-full object-contain animate-moon-aura drop-shadow-md"
               referrerPolicy="no-referrer"
               loading="eager"
               decoding="async"
+              fetchPriority="high"
+            />
+          </div>
+
+          {/* Person (Astronaut) in Front - larger on tablet */}
+          <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center scale-110 md:scale-135">
+            <img
+              src={MEDIA_ASSETS.person}
+              alt="AstroX Floating Astronaut"
+              className="w-full h-full object-contain p-2 animate-float-person filter contrast-110 drop-shadow-2xl"
+              referrerPolicy="no-referrer"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
             />
           </div>
         </div>

@@ -114,7 +114,7 @@ export const AstroXLogo: React.FC<AstroXLogoProps> = ({
           }`}
         >
           <img
-            src="/assets/aistudio/red_saturn_transparent.png"
+            src="/assets/aistudio/saturn.webp"
             alt="AstroX Saturn Planet Icon"
             className={`max-w-none object-contain transition-transform duration-500 ${currentSize.imgSize} ${
               isHovered ? 'scale-115 rotate-12' : 'scale-100 rotate-0'

@@ -1,4 +1,4 @@
-export type PageTab = 'home' | 'services' | 'works' | 'studio' | 'contact';
+export type PageTab = 'home' | 'services' | 'studio' | 'contact';
 
 export interface ServiceItem {
   id: string;

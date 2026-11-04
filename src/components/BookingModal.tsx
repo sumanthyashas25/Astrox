@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ASTROX_PROFILE, SERVICES_CATALOG } from '../data/agencyData';
 import { X, Check, ArrowUpRight, MessageCircle, Calendar, Sparkles, Building2, Mail, Phone, User } from 'lucide-react';
 import { BookingFormState } from '../types';
@@ -14,6 +14,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   onClose,
   preselectedService,
 }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
   const [formData, setFormData] = useState<BookingFormState>({
     fullName: '',
     email: '',
@@ -71,13 +81,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-[#0e0e0e] border border-white/20 rounded-2xl p-6 sm:p-8 shadow-2xl text-[#f4f4f4] my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200">
+      <div className="relative w-full max-w-2xl bg-[#0e0e0e] border border-white/20 rounded-2xl p-4 sm:p-8 shadow-2xl text-[#f4f4f4] my-auto max-h-[94vh] overflow-y-auto flex flex-col">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors cursor-pointer"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 z-30 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/80 hover:text-white transition-colors cursor-pointer shadow-md"
         >
           <X className="w-5 h-5" />
         </button>
