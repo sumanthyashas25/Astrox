@@ -58,8 +58,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             isLoaded ? 'opacity-100 filter-none scale-100' : 'opacity-0 blur-md scale-95'
           }`}
           style={{
-            left: 'calc(480 * var(--u))',
-            top: `calc((105 * var(--u)) + ${scrollOffset * 0.05}px)`,
+            left: 'calc(516 * var(--u))',
+            top: `calc((170 * var(--u)) + ${scrollOffset * 0.05}px)`,
             width: 'calc(580 * var(--u))',
             height: 'calc(580 * var(--u))',
             zIndex: 10,
@@ -82,8 +82,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             isLoaded ? 'opacity-100 filter-none translate-y-0' : 'opacity-0 blur-sm translate-y-10'
           }`}
           style={{
-            left: 'calc(430 * var(--u))',
-            top: `calc((120 * var(--u)) + ${photoParallax}px)`,
+            left: 'calc(466 * var(--u))',
+            top: `calc((185 * var(--u)) + ${photoParallax}px)`,
             width: 'calc(660 * var(--u))',
             height: 'calc(740 * var(--u))',
             zIndex: 12,
@@ -394,7 +394,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
 
         {/* Composite Visual Showcase (Moon Behind, Astronaut in Front) - increased height and removed overflow-hidden to fix cropping */}
-        <div className="relative w-full h-[400px] md:h-[650px] mt-4 md:mt-12 md:translate-x-12 md:translate-y-8 max-w-[380px] md:max-w-[580px] mx-auto flex items-center justify-center">
+        <div className="relative w-full h-[400px] md:h-[650px] mt-4 md:mt-12 md:translate-x-[2.5%] md:translate-y-[7%] max-w-[380px] md:max-w-[580px] mx-auto flex items-center justify-center">
           {/* Moon Behind */}
           <div className="absolute w-[280px] h-[280px] md:w-[480px] md:h-[480px] z-10 pointer-events-none flex items-center justify-center">
             <img
