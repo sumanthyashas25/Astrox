@@ -52,16 +52,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* 1440 Desktop Canvas Container */}
       <div className="relative mx-auto w-full max-w-[1440px] h-[calc(938*var(--u))] hidden md:block">
         
-        {/* Moon Behind the Person: Left 410u, Top 70u, 620 x 620u */}
+        {/* Moon Behind the Person: Left 450u, Top 65u, 580 x 580u */}
         <div
           className={`absolute pointer-events-none transition-all duration-[1500ms] ease-out ${
             isLoaded ? 'opacity-100 filter-none scale-100' : 'opacity-0 blur-md scale-95'
           }`}
           style={{
-            left: 'calc(410 * var(--u))',
-            top: `calc((70 * var(--u)) + ${scrollOffset * 0.05}px)`,
-            width: 'calc(620 * var(--u))',
-            height: 'calc(620 * var(--u))',
+            left: 'calc(450 * var(--u))',
+            top: `calc((65 * var(--u)) + ${scrollOffset * 0.05}px)`,
+            width: 'calc(580 * var(--u))',
+            height: 'calc(580 * var(--u))',
             zIndex: 10,
           }}
         >
@@ -73,16 +73,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           />
         </div>
 
-        {/* Person (Astronaut) in the Front: Left 340u, Top 80u, 730 x 800u */}
+        {/* Person (Astronaut) in the Front: Left 400u, Top 80u, 660 x 740u */}
         <div
           className={`absolute pointer-events-none transition-all duration-[1200ms] ease-out ${
             isLoaded ? 'opacity-100 filter-none translate-y-0' : 'opacity-0 blur-sm translate-y-10'
           }`}
           style={{
-            left: 'calc(340 * var(--u))',
+            left: 'calc(400 * var(--u))',
             top: `calc((80 * var(--u)) + ${photoParallax}px)`,
-            width: 'calc(730 * var(--u))',
-            height: 'calc(800 * var(--u))',
+            width: 'calc(660 * var(--u))',
+            height: 'calc(740 * var(--u))',
             zIndex: 12,
           }}
         >
@@ -106,14 +106,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         >
           <div className="overflow-hidden">
             <h1
-              className={`archivo-display leading-[0.86] tracking-[-0.06em] text-[#111111] transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`archivo-display leading-[0.92] tracking-[-0.035em] text-[#111111] whitespace-nowrap transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isLoaded ? 'translate-y-0' : 'translate-y-full'
               }`}
               style={{
-                fontSize: 'calc(90 * var(--u))',
+                fontSize: 'calc(68 * var(--u))',
               }}
             >
-              PURE<br />DESIGN
+              PURE<br />MARKETING
             </h1>
           </div>
 
@@ -257,7 +257,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3.5'
           }`}
           style={{
-            left: 'calc(1216 * var(--u))',
+            right: 'calc(57 * var(--u))',
             top: 'calc(258 * var(--u))',
           }}
         >
@@ -363,7 +363,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             AstroX · Bengaluru HQ · Founded 2025
           </div>
           <h1 className="archivo-display text-[46px] leading-[0.9] tracking-[-0.05em] text-[#111111]">
-            PURE<br />DESIGN
+            PURE<br />MARKETING
           </h1>
           <p className="font-archivo text-base font-semibold text-neutral-700 mt-1">
             Pushing Beyond the Stars

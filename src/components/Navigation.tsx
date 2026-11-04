@@ -49,7 +49,7 @@ export const Navigation: React.FC<NavigationProps> = ({
     <>
       {/* Desktop Navigation at absolute coordinates (57, 61) / (1237, 63) */}
       <div className="hidden md:block pointer-events-none absolute inset-x-0 top-0 z-40">
-        <div className="relative mx-auto w-full max-w-[1440px] px-6">
+        <div className="relative mx-auto w-full max-w-[1440px]">
           {/* Brand Logo & Segmented Pill at (57, 61) */}
           <div
             className="pointer-events-auto absolute flex items-center gap-[calc(20*var(--u))]"
@@ -103,22 +103,22 @@ export const Navigation: React.FC<NavigationProps> = ({
             </div>
           </div>
 
-          {/* Top Right Date at (1038, 70) */}
+          {/* Top Right Date */}
           <div
             className="pointer-events-auto absolute font-inter-tight text-[calc(13.5*var(--u))] text-neutral-600 font-medium tracking-tight whitespace-nowrap select-none"
             style={{
-              left: 'calc(1038 * var(--u))',
+              right: 'calc(230 * var(--u))',
               top: 'calc(70 * var(--u))',
             }}
           >
             <span>Wednesday / 04.11 – Nov 2026</span>
           </div>
 
-          {/* Top Right Contact Us Button at (1237, 63), 144 x 46u */}
+          {/* Top Right Contact Us Button, 144 x 46u */}
           <div
             className="pointer-events-auto absolute"
             style={{
-              left: 'calc(1237 * var(--u))',
+              right: 'calc(57 * var(--u))',
               top: 'calc(63 * var(--u))',
               width: 'calc(144 * var(--u))',
               height: 'calc(46 * var(--u))',

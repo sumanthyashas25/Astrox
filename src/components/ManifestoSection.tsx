@@ -97,18 +97,18 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ id = 'manife
       ref={sectionRef}
       className="relative w-full bg-[#000000] text-[#f4f4f4] select-none"
       style={{
-        paddingTop: 'calc(170 * var(--u))',
-        paddingBottom: 'calc(230 * var(--u))',
+        paddingTop: 'clamp(80px, calc(170 * var(--u)), 170px)',
+        paddingBottom: 'clamp(90px, calc(230 * var(--u)), 230px)',
       }}
     >
-      <div className="mx-auto w-full max-w-[1440px] px-6 flex flex-col items-center">
+      <div className="mx-auto w-full max-w-[1440px] px-4 sm:px-6 md:px-10 flex flex-col items-center">
         
-        {/* Centred Statement, 830u wide, 52u, line-height 1.33, tracking -0.028em */}
+        {/* Centred Statement */}
         <div
           className="text-center font-archivo tracking-[-0.028em] leading-[1.33]"
           style={{
-            maxWidth: 'calc(830 * var(--u))',
-            fontSize: 'calc(52 * var(--u))',
+            maxWidth: 'min(830px, calc(830 * var(--u)))',
+            fontSize: 'clamp(24px, calc(52 * var(--u)), 52px)',
           }}
         >
           <p className="flex flex-wrap justify-center gap-x-[0.28em] gap-y-1">
@@ -126,12 +126,12 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ id = 'manife
           </p>
         </div>
 
-        {/* Sub-line: 150u below statement, 23u font size */}
+        {/* Sub-line: 150u below statement */}
         <div
           className="text-center font-inter-tight font-medium"
           style={{
-            marginTop: 'calc(150 * var(--u))',
-            fontSize: 'calc(23 * var(--u))',
+            marginTop: 'clamp(60px, calc(150 * var(--u)), 150px)',
+            fontSize: 'clamp(15px, calc(23 * var(--u)), 23px)',
             lineHeight: 1.45,
           }}
         >

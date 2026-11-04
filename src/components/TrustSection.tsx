@@ -162,21 +162,13 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
             </p>
           </div>
 
-          {/* Right Column: Cards (326u tall, 8u radius) */}
+          {/* Right Column: Cards (326u tall on desktop, responsive flex on mobile/tablet) */}
           <div
-            className="relative z-10 w-full lg:w-auto flex flex-col sm:flex-row items-stretch lg:items-center gap-[calc(18*var(--u))] overflow-visible"
-            style={{
-              height: 'calc(326 * var(--u))',
-            }}
+            className="relative z-10 w-full lg:w-auto flex flex-col md:flex-row items-stretch lg:items-center gap-4 lg:gap-[calc(18*var(--u))] overflow-visible"
           >
-            {/* Avatar Card: light grey #d6d6d6, 293u wide */}
+            {/* Avatar Card: light grey #d6d6d6 */}
             <div
-              className="card-lift bg-[#d6d6d6] text-[#111111] rounded-[calc(8*var(--u))] p-[calc(20*var(--u))] flex flex-col justify-between shadow-xl cursor-default"
-              style={{
-                width: 'calc(293 * var(--u))',
-                height: 'calc(326 * var(--u))',
-                minWidth: '240px',
-              }}
+              className="card-lift bg-[#d6d6d6] text-[#111111] rounded-[calc(8*var(--u))] p-5 lg:p-[calc(20*var(--u))] flex flex-col justify-between shadow-xl cursor-default w-full md:w-[280px] lg:w-[calc(293*var(--u))] min-h-[300px] lg:min-h-[326px]"
             >
               <div>
                 <div className="text-[calc(11.5*var(--u))] font-semibold uppercase tracking-wider text-neutral-600 mb-[calc(12*var(--u))]">
@@ -224,16 +216,11 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
               </div>
             </div>
 
-            {/* Awards Card: #262626, 298u wide */}
+            {/* Awards Card: #262626 */}
             <div
-              className={`card-lift bg-[#262626] text-white rounded-[calc(8*var(--u))] p-[calc(20*var(--u))] flex flex-col justify-between border border-white/10 shadow-xl cursor-default transition-transform duration-500 ${
+              className={`card-lift bg-[#262626] text-white rounded-[calc(8*var(--u))] p-5 lg:p-[calc(20*var(--u))] flex flex-col justify-between border border-white/10 shadow-xl cursor-default transition-transform duration-500 w-full md:w-[280px] lg:w-[calc(298*var(--u))] min-h-[300px] lg:min-h-[326px] ${
                 awardsLifted ? '-translate-y-[calc(6*var(--u))] shadow-[0_20px_40px_rgba(0,0,0,0.5)]' : ''
               }`}
-              style={{
-                width: 'calc(298 * var(--u))',
-                height: 'calc(326 * var(--u))',
-                minWidth: '240px',
-              }}
             >
               <div>
                 <div className="text-[calc(11.5*var(--u))] font-semibold uppercase tracking-wider text-neutral-400">

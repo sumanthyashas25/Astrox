@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --u: min(100vw / 1440, 1.333px);
+  --u: min(100vw / 1440, 1px);
   --paper-color: #dadada;
   --ink-color: #111111;
   --panel-black: #000000;
