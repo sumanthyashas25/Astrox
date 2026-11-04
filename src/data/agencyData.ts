@@ -25,7 +25,7 @@ export const ASTROX_PROFILE = {
     pin: '560061',
     country: 'India',
   },
-  logoUrl: '/assets/aistudio/astrox_f205bc64.png',
+  logoUrl: '/assets/aistudio/logo.webp',
 };
 
 export const MEDIA_ASSETS = {

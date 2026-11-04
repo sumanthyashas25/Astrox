@@ -65,7 +65,7 @@ export const StudioView: React.FC<StudioViewProps> = ({ onOpenBooking }) => {
           <div className="bg-neutral-950 p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
             <span className="text-xs font-mono uppercase text-neutral-500">Team Scale</span>
             <div className="mt-4">
-              <div className="archivo-display text-2xl md:text-3xl xl:text-4xl font-bold text-white whitespace-normal leading-tight break-words">
+              <div className="archivo-display text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight break-words">
                 {ASTROX_PROFILE.size}
               </div>
               <div className="text-xs text-neutral-400 mt-1">Specialized elite squad</div>

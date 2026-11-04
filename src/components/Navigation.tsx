@@ -74,7 +74,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             >
               {/* Sliding black pill */}
               <div
-                className="absolute top-[calc(4*var(--u))] bottom-[calc(4*var(--u))] bg-[#111111] rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="absolute top-[calc(4*var(--u))] bottom-[calc(4*var(--u))] bg-black rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{
                   left: `${pillStyle.left}px`,
                   width: `${pillStyle.width}px`,
@@ -150,17 +150,19 @@ export const Navigation: React.FC<NavigationProps> = ({
         <AstroXLogo
           size="sm"
           onClick={() => onTabChange('home')}
-          className={`shrink-0 scale-90 sm:scale-80 ${activeTab === 'home' ? 'text-[#111111]' : 'text-white'}`}
+          className={`shrink-0 scale-90 sm:scale-75 md:scale-70 ${activeTab === 'home' ? 'text-[#111111]' : 'text-white'}`}
         />
 
         <div className="flex items-center gap-1 min-w-0 overflow-x-auto no-scrollbar py-0.5">
-          <div className="flex items-center bg-white/95 rounded-full p-0.5 border border-black/10 shadow-sm shrink-0">
+          <div className="flex items-center bg-white/90 rounded-full p-1 border border-black/5 shadow-sm shrink-0">
             {navItems.map((item) => (
               <button
                 key={item.tab}
                 onClick={() => onTabChange(item.tab)}
-                className={`px-2 py-0.5 text-[10.5px] font-medium rounded-full whitespace-nowrap transition-colors ${
-                  activeTab === item.tab ? 'bg-[#111] text-white' : 'text-neutral-700 hover:text-black'
+                className={`px-3 py-1 text-[11px] font-semibold rounded-full whitespace-nowrap transition-all duration-200 ${
+                  activeTab === item.tab 
+                    ? 'bg-black text-white shadow-sm' 
+                    : 'text-neutral-600 hover:text-black hover:bg-black/5'
                 }`}
               >
                 {item.label}

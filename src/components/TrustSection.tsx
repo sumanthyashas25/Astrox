@@ -1,5 +1,34 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { MEDIA_ASSETS } from '../data/agencyData';
+import { 
+  Cpu, 
+  Globe, 
+  Code2, 
+  Database, 
+  Layout, 
+  Layers, 
+  PenTool, 
+  ImageIcon, 
+  Palette, 
+  Framer, 
+  Video, 
+  Zap 
+} from 'lucide-react';
+
+const TOOLS = [
+  { name: 'React.js', icon: Cpu },
+  { name: 'Next.js', icon: Globe },
+  { name: 'Node.js', icon: Code2 },
+  { name: 'MongoDB', icon: Database },
+  { name: 'PostgreSQL', icon: Layers },
+  { name: 'WordPress', icon: Layout },
+  { name: 'Figma', icon: Framer },
+  { name: 'Photoshop', icon: ImageIcon },
+  { name: 'Illustrator', icon: PenTool },
+  { name: 'Adobe XD', icon: Palette },
+  { name: 'Premiere Pro', icon: Video },
+  { name: 'After Effects', icon: Zap },
+];
 
 interface TrustSectionProps {
   id?: string;
@@ -125,37 +154,35 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
           <div
             className="relative z-10 w-full lg:w-auto flex flex-col md:flex-row items-stretch lg:items-center gap-4 lg:gap-[calc(18*var(--u))] overflow-visible"
           >
-            {/* Avatar Card: light grey #d6d6d6 */}
+            {/* Tools Card: Replacing Avatar Card */}
             <div
               className="card-lift bg-[#d6d6d6] text-[#111111] rounded-[calc(8*var(--u))] p-5 lg:p-[calc(20*var(--u))] flex flex-col justify-between shadow-xl cursor-default w-full md:w-[280px] lg:w-[calc(293*var(--u))] min-h-[300px] lg:min-h-[326px]"
             >
               <div>
-                <div className="text-[calc(11.5*var(--u))] font-semibold uppercase tracking-wider text-neutral-600 mb-[calc(12*var(--u))]">
-                  Global Network
+                <div className="text-[calc(11.5*var(--u))] font-semibold uppercase tracking-wider text-neutral-600 mb-[calc(14*var(--u))] flex items-center justify-between">
+                  <span>Engineered with</span>
+                  <span className="text-[calc(10*var(--u))] opacity-60 font-mono">2025 Stack</span>
                 </div>
 
-                {/* Eight round 48u avatars in a 4 x 2 grid */}
-                <div className="grid grid-cols-4 gap-[calc(8*var(--u))]">
-                  {MEDIA_ASSETS.avatars.map((url, i) => (
+                {/* 12 Tools in a 4x3 compact grid */}
+                <div className="grid grid-cols-4 gap-x-[calc(8*var(--u))] gap-y-[calc(10*var(--u))]">
+                  {TOOLS.map((tool, i) => (
                     <div
-                      key={i}
-                      className="rounded-full overflow-hidden border border-neutral-300 shadow-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      key={tool.name}
+                      className="flex flex-col items-center gap-1 group/tool"
                       style={{
-                        width: 'calc(48 * var(--u))',
-                        height: 'calc(48 * var(--u))',
-                        transform: hasAnimated || isReducedMotion ? 'scale(1)' : 'scale(0.4)',
+                        transform: hasAnimated || isReducedMotion ? 'scale(1)' : 'scale(0.8)',
                         opacity: hasAnimated || isReducedMotion ? 1 : 0,
-                        transitionDelay: `${i * 45}ms`,
+                        transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                        transitionDelay: `${i * 30}ms`,
                       }}
                     >
-                      <img
-                        src={url}
-                        alt={`Partner ${i + 1}`}
-                        className="w-full h-full object-cover filter grayscale contrast-125"
-                        referrerPolicy="no-referrer"
-                        loading="lazy"
-                        decoding="async"
-                      />
+                      <div className="w-[calc(32*var(--u))] h-[calc(32*var(--u))] rounded-lg bg-white/40 flex items-center justify-center text-neutral-800 shadow-sm border border-black/5">
+                        <tool.icon strokeWidth={1.5} className="w-[calc(18*var(--u))] h-[calc(18*var(--u))]" />
+                      </div>
+                      <span className="text-[calc(8*var(--u))] font-mono uppercase tracking-tighter text-neutral-600 whitespace-nowrap overflow-hidden text-ellipsis w-full text-center">
+                        {tool.name.split('.')[0]}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -166,13 +193,13 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ id = 'trust', onOpen
                 <div
                   className="archivo-wide font-bold leading-none text-[#111111]"
                   style={{
-                    fontSize: 'calc(43 * var(--u))',
+                    fontSize: 'calc(32 * var(--u))',
                   }}
                 >
-                  {collabCount}M+
+                  Technical Mastery
                 </div>
-                <div className="font-inter-tight text-[calc(13*var(--u))] text-neutral-700 font-medium mt-[calc(4*var(--u))]">
-                  Global Collaborations
+                <div className="font-inter-tight text-[calc(11*var(--u))] text-neutral-700 font-medium mt-[calc(4*var(--u))] uppercase tracking-widest">
+                  Modern Software Stack
                 </div>
               </div>
             </div>

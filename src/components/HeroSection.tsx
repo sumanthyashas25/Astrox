@@ -50,7 +50,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section className="relative w-full bg-[#dadada] text-[#111111] overflow-hidden select-none">
       {/* 1440 Desktop Canvas Container (>= 1024px) */}
-      <div className="relative mx-auto w-full max-w-[1440px] h-[calc(820*var(--u))] hidden lg:block">
+      <div className="relative mx-auto w-full max-w-[1440px] h-[calc(938*var(--u))] hidden lg:block">
         
         {/* Moon Behind the Person: Left 450u, Top 65u, 580 x 580u */}
         <div
@@ -58,8 +58,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             isLoaded ? 'opacity-100 filter-none scale-100' : 'opacity-0 blur-md scale-95'
           }`}
           style={{
-            left: 'calc(450 * var(--u))',
-            top: `calc((65 * var(--u)) + ${scrollOffset * 0.05}px)`,
+            left: 'calc(480 * var(--u))',
+            top: `calc((105 * var(--u)) + ${scrollOffset * 0.05}px)`,
             width: 'calc(580 * var(--u))',
             height: 'calc(580 * var(--u))',
             zIndex: 10,
@@ -82,8 +82,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             isLoaded ? 'opacity-100 filter-none translate-y-0' : 'opacity-0 blur-sm translate-y-10'
           }`}
           style={{
-            left: 'calc(400 * var(--u))',
-            top: `calc((80 * var(--u)) + ${photoParallax}px)`,
+            left: 'calc(430 * var(--u))',
+            top: `calc((120 * var(--u)) + ${photoParallax}px)`,
             width: 'calc(660 * var(--u))',
             height: 'calc(740 * var(--u))',
             zIndex: 12,
@@ -256,7 +256,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           }`}
           style={{
             right: 'calc(57 * var(--u))',
-            top: 'calc(258 * var(--u))',
+            top: 'calc(388 * var(--u))',
           }}
         >
           <div className="glass-pill-light rounded-full py-[calc(7*var(--u))] px-[calc(14*var(--u))] flex items-center gap-[calc(8*var(--u))] shadow-[0_4px_20px_rgba(0,0,0,0.06)]">
@@ -300,13 +300,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           }}
         >
           <div
-            onClick={() => onOpenCaseStudy('q-industrial')}
-            className="group cursor-pointer"
+            className="group"
           >
             {/* Label header */}
             <div className="flex items-center justify-between text-[calc(11*var(--u))] font-semibold tracking-wider text-neutral-800 uppercase mb-[calc(8*var(--u))]">
-              <span>Out Now</span>
-              <span className="text-neutral-500">[2025]</span>
+              <span>New Offers</span>
+              <span className="text-neutral-500">[2026 Nov]</span>
             </div>
 
             {/* 196u tall image card */}
@@ -332,21 +331,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               {/* Client Title */}
               <div className="absolute bottom-[calc(14*var(--u))] left-[calc(14*var(--u))] text-white">
                 <div className="font-archivo text-[calc(16*var(--u))] font-bold leading-tight">
-                  Q Industrial
+                  New Offers
                 </div>
                 <div className="text-[calc(11*var(--u))] text-white/70">
-                  Global Motion Identity
+                  Terms and Conditions applies
                 </div>
-              </div>
-
-              {/* Frosted round arrow button: rotates 45 deg on hover */}
-              <div className="absolute top-[calc(12*var(--u))] right-[calc(12*var(--u))] w-[calc(34*var(--u))] h-[calc(34*var(--u))] rounded-full glass-panel-dark flex items-center justify-center text-white transition-transform duration-300 group-hover:rotate-45">
-                <ArrowUpRight className="w-[calc(16*var(--u))] h-[calc(16*var(--u))]" />
               </div>
 
               {/* Progress line: white at 35% with white fill */}
               <div className="absolute bottom-0 inset-x-0 h-[3px] bg-white/35">
-                <div className="h-full bg-white w-2/3 group-hover:w-full transition-all duration-700 ease-out" />
+                <div className="h-full bg-white w-2/3" />
               </div>
             </div>
           </div>
@@ -355,12 +349,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* Responsive Grid Layout (< 1024px) */}
-      <div className="lg:hidden px-4 py-4 md:py-6 grid grid-cols-1 gap-5 w-full max-w-lg mx-auto">
+      <div className="lg:hidden px-4 pt-20 pb-12 md:pt-4 md:pb-16 grid grid-cols-1 gap-8 w-full max-w-xl mx-auto">
         
         {/* Brand Elements (Centered) */}
-        <div className="flex flex-col items-center text-center gap-3 w-full">
+        <div className="flex flex-col items-center text-center gap-4 w-full">
           {/* Location & Status Marker */}
-          <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-black/5 text-neutral-800 text-[11px] font-semibold tracking-wider uppercase">
+          <div className="inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-black/5 text-neutral-800 text-[11px] font-semibold tracking-wider uppercase">
             <span>AstroX</span>
             <span className="text-neutral-400">·</span>
             <span>Bengaluru HQ</span>
@@ -369,12 +363,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Centered Primary Headline */}
-          <h1 className="archivo-display text-[44px] sm:text-5xl leading-[0.92] tracking-[-0.04em] text-[#111111] text-center">
+          <h1 className="archivo-display text-[44px] sm:text-5xl md:text-6xl leading-[0.95] tracking-[-0.04em] text-[#111111] text-center">
             PURE<br />MARKETING
           </h1>
 
           {/* Centered Brand Mark & Tagline */}
-          <div className="flex items-center justify-center gap-2.5">
+          <div className="flex items-center justify-center gap-3">
             <AstroXLogo size="sm" className="text-[#111111]" />
             <span className="text-neutral-400">·</span>
             <span className="font-inter-tight text-xs uppercase tracking-[0.2em] text-neutral-700 font-semibold">
@@ -383,7 +377,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Centered Value Proposition */}
-          <p className="text-sm text-neutral-800 leading-relaxed font-medium max-w-md mx-auto text-center mt-1">
+          <p className="text-sm md:text-base text-neutral-800 leading-relaxed font-medium max-w-md mx-auto text-center">
             Building stunning website that every brand deserves to be seen. AstroX crafts high-performance digital engines for startups and ambitious founders.
           </p>
 
@@ -391,7 +385,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="pt-2 flex justify-center">
             <button
               onClick={onOpenBooking}
-              className="px-8 py-3.5 bg-[#111111] text-white hover:bg-neutral-900 rounded-full inline-flex items-center justify-center gap-2 text-sm font-semibold btn-lift shadow-md transition-all duration-200 cursor-pointer"
+              className="px-10 py-4 bg-[#111111] text-white hover:bg-neutral-900 rounded-full inline-flex items-center justify-center gap-2 text-sm font-semibold btn-lift shadow-md transition-all duration-200 cursor-pointer"
             >
               <span>Book A Call</span>
               <ArrowUpRight className="w-4 h-4" />
@@ -399,10 +393,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* Composite Visual Showcase (Moon Behind, Astronaut in Front) */}
-        <div className="relative w-full h-[400px] md:h-[500px] max-w-[380px] md:max-w-[480px] mx-auto overflow-hidden flex items-center justify-center">
+        {/* Composite Visual Showcase (Moon Behind, Astronaut in Front) - increased height and removed overflow-hidden to fix cropping */}
+        <div className="relative w-full h-[400px] md:h-[650px] mt-4 md:mt-12 md:translate-x-12 md:translate-y-8 max-w-[380px] md:max-w-[580px] mx-auto flex items-center justify-center">
           {/* Moon Behind */}
-          <div className="absolute w-[280px] h-[280px] md:w-[380px] md:h-[380px] z-10 pointer-events-none flex items-center justify-center">
+          <div className="absolute w-[280px] h-[280px] md:w-[480px] md:h-[480px] z-10 pointer-events-none flex items-center justify-center">
             <img
               src={MEDIA_ASSETS.moon}
               alt="Glowing Moon"
@@ -414,8 +408,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             />
           </div>
 
-          {/* Person (Astronaut) in Front - larger on tablet */}
-          <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center scale-110 md:scale-135">
+          {/* Person (Astronaut) in Front */}
+          <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center scale-110 md:scale-125">
             <img
               src={MEDIA_ASSETS.person}
               alt="AstroX Floating Astronaut"
@@ -478,8 +472,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
         {/* Out Now Q Industrial */}
         <div
-          onClick={() => onOpenCaseStudy('q-industrial')}
-          className="rounded-xl overflow-hidden relative h-[180px] shadow-md border border-neutral-300 cursor-pointer group w-full max-w-md mx-auto"
+          className="rounded-xl overflow-hidden relative h-[180px] shadow-md border border-neutral-300 group w-full max-w-md mx-auto"
         >
           <img
             src={MEDIA_ASSETS.qIndustrial}
@@ -491,15 +484,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
           <div className="absolute top-3 left-3 text-[10px] uppercase tracking-wider text-white/80 font-mono">
-            Out Now [2025]
+            New Offers [2026 Nov]
           </div>
           <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white">
             <div>
-              <div className="font-archivo text-base font-bold">Q Industrial</div>
-              <div className="text-xs text-white/70">Global Motion Identity</div>
-            </div>
-            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
-              <ArrowUpRight className="w-4 h-4" />
+              <div className="font-archivo text-base font-bold">New Offers</div>
+              <div className="text-xs text-white/70">Terms and Conditions applies</div>
             </div>
           </div>
         </div>
