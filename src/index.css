@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --u: min(100vw / 1440, 1.333px);
+  --paper-color: #dadada;
+  --ink-color: #111111;
+  --panel-black: #000000;
+  --text-white: #f4f4f4;
+  --statement-grey: #6f6f6f;
+  --hairline-14: rgba(255, 255, 255, 0.14);
+  --hairline-28: rgba(255, 255, 255, 0.28);
+}
+
+@media (max-width: 760px) {
+  :root {
+    --u: calc(100vw / 390);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #000000;
+  color: #f4f4f4;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom font utilities */
+.font-archivo {
+  font-family: 'Archivo', sans-serif;
+  font-optical-sizing: auto;
+}
+
+.font-inter-tight {
+  font-family: 'Inter Tight', sans-serif;
+}
+
+/* Specific Archivo variants */
+.archivo-display {
+  font-family: 'Archivo', sans-serif;
+  font-variation-settings: 'wdth' 104, 'wght' 640;
+}
+
+.archivo-wide {
+  font-family: 'Archivo', sans-serif;
+  font-variation-settings: 'wdth' 115, 'wght' 600;
+}
+
+.archivo-condensed {
+  font-family: 'Archivo', sans-serif;
+  font-variation-settings: 'wdth' 75, 'wght' 700;
+}
+
+/* Mask image utility for hero photo edge melting into #dadada */
+.hero-photo-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+/* Glass backdrop styling */
+.glass-panel-dark {
+  background: rgba(18, 18, 18, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.glass-pill-light {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.glass-tile {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Micro interaction transitions */
+.btn-lift {
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.16s ease;
+}
+.btn-lift:hover {
+  transform: translateY(-1px);
+}
+
+.card-lift {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.24s ease, box-shadow 0.28s ease;
+}
+.card-lift:hover {
+  transform: translateY(calc(-6 * var(--u)));
+}
+
+/* Hide scrollbar for clean horizontal flows if needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Floating animation for astronaut person */
+@keyframes floatPerson {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-0.8deg);
+  }
+}
+
+.animate-float-person {
+  animation: floatPerson 6s ease-in-out infinite;
+}
+
+/* Subtle lunar pulse */
+@keyframes moonAura {
+  0%, 100% {
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.25)) drop-shadow(0 20px 50px rgba(0, 0, 0, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 55px rgba(255, 255, 255, 0.45)) drop-shadow(0 25px 60px rgba(0, 0, 0, 0.3));
+  }
+}
+
+.animate-moon-aura {
+  animation: moonAura 8s ease-in-out infinite;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
