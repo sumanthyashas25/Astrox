@@ -49,8 +49,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section className="relative w-full bg-[#dadada] text-[#111111] overflow-hidden select-none">
-      {/* 1440 Desktop Canvas Container */}
-      <div className="relative mx-auto w-full max-w-[1440px] h-[calc(938*var(--u))] hidden md:block">
+      {/* 1440 Desktop Canvas Container (>= 760px) */}
+      <div className="relative mx-auto w-full max-w-[1440px] h-[calc(938*var(--u))] hidden min-[760px]:block">
         
         {/* Moon Behind the Person: Left 450u, Top 65u, 580 x 580u */}
         <div
@@ -162,16 +162,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* Row of Fictional Wordmarks at y 864 across jacket: "Lumon · Paperfold · Northwind" */}
-        <div
-          className="absolute z-20 pointer-events-none text-white/90 font-inter-tight text-[calc(13*var(--u))] font-medium tracking-[0.24em] uppercase"
-          style={{
-            left: 'calc(580 * var(--u))',
-            top: 'calc(864 * var(--u))',
-          }}
-        >
-          <span>Lumon · Paperfold · Northwind</span>
-        </div>
 
         {/* Stats Frame at (57, 693), 341 x 208u, light grey #cdcdcd */}
         <div
@@ -354,70 +344,84 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       </div>
 
-      {/* Responsive Mobile Layout (<= 760px) */}
-      <div className="md:hidden px-4 py-8 flex flex-col gap-6">
+      {/* Responsive Grid Layout (< 760px) */}
+      <div className="min-[760px]:hidden px-4 py-8 sm:py-10 grid grid-cols-1 gap-8 w-full max-w-lg mx-auto">
         
-        {/* Title & Tagline */}
-        <div>
-          <div className="inline-block px-2.5 py-1 rounded-full bg-black/5 text-neutral-800 text-[11px] font-semibold tracking-wider uppercase mb-2">
-            AstroX · Bengaluru HQ · Founded 2025
+        {/* Brand Elements (Centered) */}
+        <div className="flex flex-col items-center text-center gap-3 w-full">
+          {/* Location & Status Marker */}
+          <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-black/5 text-neutral-800 text-[11px] font-semibold tracking-wider uppercase">
+            <span>AstroX</span>
+            <span className="text-neutral-400">·</span>
+            <span>Bengaluru HQ</span>
+            <span className="text-neutral-400">·</span>
+            <span>Founded 2025</span>
           </div>
-          <h1 className="archivo-display text-[46px] leading-[0.9] tracking-[-0.05em] text-[#111111]">
+
+          {/* Centered Primary Headline */}
+          <h1 className="archivo-display text-[44px] sm:text-5xl leading-[0.92] tracking-[-0.04em] text-[#111111] text-center">
             PURE<br />MARKETING
           </h1>
-          <p className="font-archivo text-base font-semibold text-neutral-700 mt-1">
-            Pushing Beyond the Stars
-          </p>
-        </div>
 
-        {/* About Copy & Book A Call */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 uppercase tracking-wider">
-            <span>●</span>
-            <span>(ABOUT)</span>
+          {/* Centered Brand Mark & Tagline */}
+          <div className="flex items-center justify-center gap-2.5">
+            <AstroXLogo size="sm" className="text-[#111111]" />
+            <span className="text-neutral-400">·</span>
+            <span className="font-inter-tight text-xs uppercase tracking-[0.2em] text-neutral-700 font-semibold">
+              {ASTROX_PROFILE.tagline}
+            </span>
           </div>
-          <p className="text-sm text-neutral-800 leading-relaxed font-medium">
+
+          {/* Centered Value Proposition */}
+          <p className="text-sm text-neutral-800 leading-relaxed font-medium max-w-md mx-auto text-center mt-1">
             Building stunning website that every brand deserves to be seen. AstroX crafts high-performance digital engines for startups and ambitious founders.
           </p>
-          <button
-            onClick={onOpenBooking}
-            className="w-full py-3 bg-[#111] text-white rounded-full flex items-center justify-center gap-2 text-sm font-semibold btn-lift shadow-sm"
-          >
-            <span>Book A Call</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </button>
+
+          {/* Centered Call to Action */}
+          <div className="pt-2 flex justify-center">
+            <button
+              onClick={onOpenBooking}
+              className="px-8 py-3.5 bg-[#111111] text-white hover:bg-neutral-900 rounded-full inline-flex items-center justify-center gap-2 text-sm font-semibold btn-lift shadow-md transition-all duration-200 cursor-pointer"
+            >
+              <span>Book A Call</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        {/* Visual Showcase: Moon Behind, Person (Astronaut) in Front */}
-        <div className="relative w-full h-[380px] rounded-2xl overflow-hidden shadow-xl border border-neutral-300 bg-gradient-to-b from-[#cecece] to-[#dadada] flex items-center justify-center">
-          {/* Moon Behind */}
-          <div className="absolute w-[280px] h-[280px] top-2 pointer-events-none">
-            <img
-              src={MEDIA_ASSETS.moon}
-              alt="Moon"
-              className="w-full h-full object-contain animate-moon-aura"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-
-          {/* Person (Astronaut) in Front */}
-          <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+        {/* Responsive Visual Grid: Person and Moon visuals stacked vertically with zero layout shift */}
+        <div className="grid grid-cols-1 gap-4 w-full">
+          {/* Person (Astronaut) Visual Card */}
+          <div className="relative w-full aspect-square max-w-[340px] mx-auto rounded-2xl bg-gradient-to-b from-[#e2e2e2] to-[#cfcfcf] border border-neutral-300 shadow-md overflow-hidden flex items-center justify-center">
             <img
               src={MEDIA_ASSETS.person}
-              alt="Astronaut in front"
-              className="w-full h-full object-contain animate-float-person drop-shadow-2xl"
+              alt="AstroX Floating Astronaut"
+              width={340}
+              height={340}
+              className="w-full h-full object-contain p-4 animate-float-person filter contrast-105 drop-shadow-xl"
               referrerPolicy="no-referrer"
+              loading="eager"
+              decoding="async"
             />
           </div>
 
-          {/* Logos across bottom */}
-          <div className="absolute bottom-3 inset-x-0 z-20 text-center text-xs tracking-[0.2em] font-medium text-white/90 uppercase">
-            Lumon · Paperfold · Northwind
+          {/* Moon Visual Card */}
+          <div className="relative w-full aspect-square max-w-[340px] mx-auto rounded-2xl bg-gradient-to-b from-[#cfcfcf] to-[#dadada] border border-neutral-300 shadow-md overflow-hidden flex items-center justify-center">
+            <img
+              src={MEDIA_ASSETS.moon}
+              alt="Glowing Moon"
+              width={340}
+              height={340}
+              className="w-full h-full object-contain p-4 animate-moon-aura drop-shadow-lg"
+              referrerPolicy="no-referrer"
+              loading="eager"
+              decoding="async"
+            />
           </div>
         </div>
 
         {/* True Growth indicator & Availability */}
-        <div className="flex items-center justify-between p-3 bg-white/70 backdrop-blur-sm rounded-xl border border-black/5">
+        <div className="flex items-center justify-between p-3.5 bg-white/70 backdrop-blur-sm rounded-xl border border-black/5 shadow-xs w-full max-w-md mx-auto">
           <div className="flex items-center gap-2">
             <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center text-xs">
               <Check className="w-3 h-3" />
@@ -430,24 +434,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
 
         {/* Stats Frame (two columns) */}
-        <div className="grid grid-cols-2 gap-3 bg-[#cdcdcd] p-2 rounded-xl">
-          <div className="bg-[#191919] text-white p-3 rounded-lg flex flex-col justify-between">
+        <div className="grid grid-cols-2 gap-3 bg-[#cdcdcd] p-2.5 rounded-xl shadow-xs w-full max-w-md mx-auto">
+          <div className="bg-[#191919] text-white p-3.5 rounded-lg flex flex-col justify-between">
             <div>
               <div className="text-2xl font-bold font-archivo">{partnerCount}+</div>
               <div className="text-[11px] text-neutral-400">Trusted Partner</div>
             </div>
             <button
               onClick={onOpenBooking}
-              className="mt-3 py-1.5 px-2 bg-white text-black text-xs font-semibold rounded text-center"
+              className="mt-3 py-1.5 px-2 bg-white text-black hover:bg-neutral-100 text-xs font-semibold rounded text-center cursor-pointer transition-colors"
             >
               Book a call
             </button>
           </div>
 
-          <div className="relative rounded-lg overflow-hidden p-3 flex flex-col justify-between text-white min-h-[120px]">
+          <div className="relative rounded-lg overflow-hidden p-3.5 flex flex-col justify-between text-white min-h-[120px]">
             <img
               src={MEDIA_ASSETS.capPhoto}
               alt="Studio"
+              width={160}
+              height={120}
               className="absolute inset-0 w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
@@ -465,12 +471,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* Out Now Q Industrial */}
         <div
           onClick={() => onOpenCaseStudy('q-industrial')}
-          className="rounded-xl overflow-hidden relative h-[180px] shadow-md border border-neutral-300"
+          className="rounded-xl overflow-hidden relative h-[180px] shadow-md border border-neutral-300 cursor-pointer group w-full max-w-md mx-auto"
         >
           <img
             src={MEDIA_ASSETS.qIndustrial}
             alt="Q Industrial"
-            className="w-full h-full object-cover"
+            width={400}
+            height={180}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
@@ -482,7 +490,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <div className="font-archivo text-base font-bold">Q Industrial</div>
               <div className="text-xs text-white/70">Global Motion Identity</div>
             </div>
-            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
               <ArrowUpRight className="w-4 h-4" />
             </div>
           </div>

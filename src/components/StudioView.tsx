@@ -8,7 +8,7 @@ interface StudioViewProps {
 
 export const StudioView: React.FC<StudioViewProps> = ({ onOpenBooking }) => {
   return (
-    <div className="w-full bg-black text-[#f4f4f4] min-h-screen py-16 px-4 md:px-12">
+    <div className="w-full bg-black text-[#f4f4f4] min-h-screen pt-[calc(140*var(--u))] md:pt-[calc(150*var(--u))] pb-20 px-4 md:px-12">
       <div className="max-w-[1440px] mx-auto">
         
         {/* Editorial Headline */}

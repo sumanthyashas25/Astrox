@@ -2,5 +2,7 @@
   "name": "AstroX Digital Marketing",
   "description": "Pushing Beyond the Stars. Monochromatic high-fashion editorial digital marketing agency in Bengaluru, India.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

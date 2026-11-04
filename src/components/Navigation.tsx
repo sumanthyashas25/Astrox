@@ -47,8 +47,8 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <>
-      {/* Desktop Navigation at absolute coordinates (57, 61) / (1237, 63) */}
-      <div className="hidden md:block pointer-events-none absolute inset-x-0 top-0 z-40">
+      {/* Desktop Navigation at absolute coordinates (57, 61) / (1237, 63) (>= 760px) */}
+      <div className="hidden min-[760px]:block pointer-events-none absolute inset-x-0 top-0 z-40">
         <div className="relative mx-auto w-full max-w-[1440px]">
           {/* Brand Logo & Segmented Pill at (57, 61) */}
           <div
@@ -105,7 +105,9 @@ export const Navigation: React.FC<NavigationProps> = ({
 
           {/* Top Right Date */}
           <div
-            className="pointer-events-auto absolute font-inter-tight text-[calc(13.5*var(--u))] text-neutral-600 font-medium tracking-tight whitespace-nowrap select-none"
+            className={`pointer-events-auto absolute font-inter-tight text-[calc(13.5*var(--u))] font-medium tracking-tight whitespace-nowrap select-none transition-colors duration-300 ${
+              activeTab === 'home' ? 'text-neutral-600' : 'text-neutral-300'
+            }`}
             style={{
               right: 'calc(230 * var(--u))',
               top: 'calc(70 * var(--u))',
@@ -126,7 +128,11 @@ export const Navigation: React.FC<NavigationProps> = ({
           >
             <button
               onClick={onOpenBooking}
-              className="w-full h-full bg-[#111111] text-white hover:bg-neutral-900 rounded-full flex items-center justify-center gap-1.5 text-[calc(14*var(--u))] font-medium tracking-tight btn-lift shadow-sm cursor-pointer transition-all duration-200"
+              className={`w-full h-full rounded-full flex items-center justify-center gap-1.5 text-[calc(14*var(--u))] font-medium tracking-tight btn-lift shadow-sm cursor-pointer transition-all duration-200 ${
+                activeTab === 'home'
+                  ? 'bg-[#111111] text-white hover:bg-neutral-900'
+                  : 'bg-white text-black hover:bg-neutral-200'
+              }`}
             >
               <span>Contact Us</span>
               <ArrowUpRight className="w-[calc(15*var(--u))] h-[calc(15*var(--u))]" />
@@ -135,13 +141,17 @@ export const Navigation: React.FC<NavigationProps> = ({
         </div>
       </div>
 
-      {/* Mobile Header (<= 760px) */}
-      <div className="md:hidden sticky top-0 z-50 w-full bg-[#dadada]/95 backdrop-blur-md border-b border-black/10 px-3 py-2.5 flex items-center justify-between gap-2">
+      {/* Mobile Header (< 760px) */}
+      <div
+        className={`min-[760px]:hidden sticky top-0 z-50 w-full backdrop-blur-md border-b px-3 py-2.5 flex items-center justify-between gap-2 transition-colors duration-300 ${
+          activeTab === 'home' ? 'bg-[#dadada]/95 border-black/10' : 'bg-black/95 border-white/10'
+        }`}
+      >
         {/* Animated AstroX Logo */}
         <AstroXLogo
           size="sm"
           onClick={() => onTabChange('home')}
-          className="text-[#111111] shrink-0"
+          className={`shrink-0 ${activeTab === 'home' ? 'text-[#111111]' : 'text-white'}`}
         />
 
         <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
