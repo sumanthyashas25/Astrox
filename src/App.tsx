@@ -7,6 +7,7 @@ import { ManifestoSection } from './components/ManifestoSection';
 import { TrustSection } from './components/TrustSection';
 import { ServicesView } from './components/ServicesView';
 import { StudioView } from './components/StudioView';
+import { ContactView } from './components/ContactView';
 import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
 import { CaseStudyModal } from './components/CaseStudyModal';
@@ -44,10 +45,6 @@ export default function App() {
   };
 
   const handleTabChange = (tab: PageTab) => {
-    if (tab === 'contact') {
-      handleOpenBooking();
-      return;
-    }
     setActiveTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -63,38 +60,45 @@ export default function App() {
         isScrolled={scrollOffset > 80}
       />
 
-      {/* Main View Router */}
+      {/* Main View Router with Smooth Transitions */}
       <main className="flex-1 w-full">
-        {activeTab === 'home' && (
-          <>
-            {/* 1. Hero Section (1440 x 938u) */}
-            <HeroSection
-              onOpenBooking={() => handleOpenBooking()}
-              onOpenCaseStudy={(id) => setSelectedCaseId(id)}
-              scrollOffset={scrollOffset}
+        <div key={activeTab} className="animate-in fade-in slide-in-from-bottom-1 duration-300">
+          {activeTab === 'home' && (
+            <>
+              {/* 1. Hero Section (1440 x 938u) */}
+              <HeroSection
+                onOpenBooking={() => handleOpenBooking()}
+                onOpenCaseStudy={(id) => setSelectedCaseId(id)}
+                scrollOffset={scrollOffset}
+              />
+
+              {/* 2. Black Bar (111u) with EST 2025, SCROLL DOWN, LIVE IN DETAILS */}
+              <BarSection onScrollToManifesto={handleScrollToManifesto} />
+
+              {/* 3. Manifesto Section (170u top, 230u bottom padding) with word-by-word soft fill */}
+              <ManifestoSection id="manifesto" />
+
+              {/* 4. Trust Panel (1302 x 429u) with Avatars, Awards, and Portrait Card */}
+              <TrustSection id="trust" onOpenBooking={() => handleOpenBooking()} />
+            </>
+          )}
+
+          {activeTab === 'services' && (
+            <ServicesView
+              onOpenBookingWithService={(service) => handleOpenBooking(service)}
             />
+          )}
 
-            {/* 2. Black Bar (111u) with EST 2025, SCROLL DOWN, LIVE IN DETAILS */}
-            <BarSection onScrollToManifesto={handleScrollToManifesto} />
+          {activeTab === 'studio' && (
+            <StudioView onOpenBooking={() => handleOpenBooking()} />
+          )}
 
-            {/* 3. Manifesto Section (170u top, 230u bottom padding) with word-by-word soft fill */}
-            <ManifestoSection id="manifesto" />
-
-            {/* 4. Trust Panel (1302 x 429u) with Avatars, Awards, and Portrait Card */}
-            <TrustSection id="trust" onOpenBooking={() => handleOpenBooking()} />
-          </>
-        )}
-
-        {activeTab === 'services' && (
-          <ServicesView
-            onOpenBookingWithService={(service) => handleOpenBooking(service)}
-          />
-        )}
-
-
-        {activeTab === 'studio' && (
-          <StudioView onOpenBooking={() => handleOpenBooking()} />
-        )}
+          {activeTab === 'contact' && (
+            <ContactView
+              preselectedService={preselectedService}
+            />
+          )}
+        </div>
       </main>
 
       {/* Editorial Footer */}

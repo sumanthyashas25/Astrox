@@ -41,10 +41,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   if (!isOpen) return null;
 
   const budgetOptions = [
-    'Under $2.5k / mo',
-    '$3k – $8k / mo',
-    '$8k – $20k / mo',
-    '$20k+ / Enterprise',
+    'Under ₹50k / mo',
+    '₹50k – ₹1.5L / mo',
+    '₹1.5L – ₹5L / mo',
+    '₹5L – ₹15L / mo',
+    '₹15L+ / Enterprise',
   ];
 
   const timelineOptions = [
@@ -77,7 +78,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     const text = encodeURIComponent(
       `Hello AstroX Team! I am interested in consulting with your agency for: ${formData.services.join(', ') || 'Digital Marketing'}. My company is ${formData.companyName || 'our brand'}.`
     );
-    window.open(`https://wa.me/919845012025?text=${text}`, '_blank');
+    window.open(`https://wa.me/91991678506?text=${text}`, '_blank');
   };
 
   return (
@@ -200,7 +201,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     <Phone className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
                     <input
                       type="tel"
-                      placeholder="+91 98450 ..."
+                      placeholder="+91 99167 8506"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full pl-9 pr-3 py-2.5 bg-neutral-900 border border-white/10 rounded-lg text-sm text-white focus:outline-none focus:border-white/40"

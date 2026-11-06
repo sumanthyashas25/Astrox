@@ -15,7 +15,7 @@ export const ASTROX_PROFILE = {
   instagramUrl: 'https://instagram.com/astrox_dm',
   linkedin: 'AstroX Digital Marketing',
   linkedinUrl: 'https://linkedin.com/company/astrox-digital-marketing',
-  phone: '+91 98450 12025',
+  phone: '+91 99167 8506',
   email: 'hello@astroxdigitalmarketing.in',
   address: {
     line1: '1st Floor, Mohan Nivas, 1st Main, 1st Cross',
