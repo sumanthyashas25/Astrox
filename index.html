@@ -12,6 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical hero assets for faster LCP -->
+    <link rel="preload" as="image" href="/assets/aistudio/moon.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/aistudio/person.webp" fetchpriority="high">
   </head>
   <body class="bg-black text-[#f4f4f4] antialiased selection:bg-neutral-800 selection:text-white">
     <div id="root"></div>
