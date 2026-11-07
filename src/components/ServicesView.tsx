@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SERVICES_CATALOG } from '../data/agencyData';
 import { ArrowUpRight, Check, Search, MessageCircle } from 'lucide-react';
+import { ServicesFAQ } from './ServicesFAQ';
 
 interface ServicesViewProps {
   onOpenBookingWithService?: (serviceName: string) => void;
@@ -163,6 +164,15 @@ export const ServicesView: React.FC<ServicesViewProps> = ({ onOpenBookingWithSer
             No services found matching "{searchQuery}". Try a different keyword.
           </div>
         )}
+
+        {/* Client Frequently Asked Questions (FAQ) Component */}
+        <ServicesFAQ
+          onOpenBooking={() => {
+            if (onOpenBookingWithService) {
+              onOpenBookingWithService('Digital Marketing Strategy Consultation');
+            }
+          }}
+        />
 
       </div>
     </div>

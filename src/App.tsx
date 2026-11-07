@@ -11,10 +11,12 @@ import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { LoadingScreen } from './components/LoadingScreen';
+import { AsteroidTransition } from './components/AsteroidTransition';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<PageTab>('home');
+  const [isPageTransitioning, setIsPageTransitioning] = useState<boolean>(false);
   const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
   const [preselectedService, setPreselectedService] = useState<string>('');
   const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
@@ -53,8 +55,13 @@ export default function App() {
   };
 
   const handleTabChange = (tab: PageTab) => {
+    if (tab === activeTab) return;
+    setIsPageTransitioning(true);
     setActiveTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      setIsPageTransitioning(false);
+    }, 850);
   };
 
   return (
@@ -125,6 +132,9 @@ export default function App() {
         onClose={() => setSelectedCaseId(null)}
         onOpenBooking={() => handleOpenBooking(selectedCaseId || undefined)}
       />
+
+      {/* Asteroid Meteor Page Transition Effect */}
+      <AsteroidTransition isTransitioning={isPageTransitioning} />
 
       {/* Intro Loading Page with Animated Logo */}
       {isLoading && (

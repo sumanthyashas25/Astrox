@@ -269,6 +269,22 @@ body {
   animation: satelliteTrailPulse 2.4s ease-in-out infinite;
 }
 
+/* Smooth page transition entrance */
+@keyframes pageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-page-enter {
+  animation: pageSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {

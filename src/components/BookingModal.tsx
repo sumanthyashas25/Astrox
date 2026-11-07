@@ -304,9 +304,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 <button
                   type="button"
                   onClick={handleWhatsAppRedirect}
-                  className="w-full py-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-black rounded-full font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all btn-lift"
+                  className="w-full px-6 py-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-black rounded-full font-semibold text-sm flex items-center justify-center gap-2.5 cursor-pointer shadow-lg transition-all btn-lift"
                 >
-                  <MessageCircle className="w-5 h-5 fill-current" />
+                  <MessageCircle className="w-5 h-5 fill-current shrink-0" />
                   <span>Connect on WhatsApp (+91 99167 8506)</span>
                 </button>
               </div>

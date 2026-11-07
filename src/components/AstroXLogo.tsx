@@ -71,6 +71,17 @@ export const AstroXLogo: React.FC<AstroXLogoProps> = ({
 
   const currentSize = sizeStyles[size];
 
+  // Automatic color calculation:
+  // If theme is 'light', always white text (#f4f4f4)
+  // If theme is 'dark', always dark ink text (#111111)
+  // If theme is 'auto' (default), inherit className color or fallback to currentColor with auto-contrast
+  const textColorClass =
+    theme === 'light'
+      ? 'text-[#f4f4f4]'
+      : theme === 'dark'
+      ? 'text-[#111111]'
+      : '';
+
   return (
     <div
       onClick={() => {
@@ -79,11 +90,11 @@ export const AstroXLogo: React.FC<AstroXLogoProps> = ({
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`inline-flex items-center font-archivo font-bold uppercase select-none cursor-pointer group ${currentSize.text} ${className}`}
+      className={`inline-flex items-center font-archivo font-bold uppercase select-none cursor-pointer group transition-colors duration-300 ${currentSize.text} ${textColorClass} ${className}`}
       title="AstroX — Click to replay logo animation"
     >
       {/* "ASTR" */}
-      <span className="transition-transform duration-300 group-hover:-translate-x-0.5">
+      <span className="transition-all duration-300 group-hover:-translate-x-0.5">
         ASTR
       </span>
 

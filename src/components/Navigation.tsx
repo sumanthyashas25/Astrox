@@ -15,6 +15,7 @@ export const Navigation: React.FC<NavigationProps> = ({
   activeTab,
   onTabChange,
   onOpenBooking,
+  isScrolled = false,
 }) => {
   const [hoveredTab, setHoveredTab] = useState<PageTab | null>(null);
   const [pillStyle, setPillStyle] = useState<{ left: number; width: number }>({ left: 0, width: 0 });
@@ -162,13 +163,22 @@ export const Navigation: React.FC<NavigationProps> = ({
 
       {/* Mobile Header (< 1024px) */}
       <div
-        className="lg:hidden sticky top-0 z-50 w-full px-2.5 py-2 flex items-center justify-between gap-1.5 overflow-hidden"
+        className={`lg:hidden sticky top-0 z-50 w-full px-3 py-2.5 flex items-center justify-between gap-1.5 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-black/85 backdrop-blur-md border-b border-white/10 shadow-lg'
+            : activeTab === 'home'
+            ? 'bg-[#dadada]/80 backdrop-blur-sm border-b border-black/5'
+            : 'bg-black/90 backdrop-blur-md border-b border-white/10'
+        }`}
       >
-        {/* Animated AstroX Logo */}
+        {/* Animated AstroX Logo with Automatic Visible Color Switching */}
         <AstroXLogo
           size="sm"
           onClick={() => onTabChange('home')}
-          className={`shrink-0 scale-90 sm:scale-75 md:scale-70 ${activeTab === 'home' ? 'text-[#111111]' : 'text-white'}`}
+          theme={isScrolled ? 'light' : activeTab === 'home' ? 'dark' : 'light'}
+          className={`shrink-0 scale-90 sm:scale-75 md:scale-70 transition-colors duration-300 ${
+            isScrolled || activeTab !== 'home' ? 'text-white' : 'text-[#111111]'
+          }`}
         />
 
         <div className="flex items-center gap-1 min-w-0 overflow-x-auto no-scrollbar py-0.5">
