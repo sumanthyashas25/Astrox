@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { PageTab } from './types';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
-import { BarSection } from './components/BarSection';
 import { ManifestoSection } from './components/ManifestoSection';
 import { TrustSection } from './components/TrustSection';
 import { ServicesView } from './components/ServicesView';
@@ -11,18 +10,27 @@ import { ContactView } from './components/ContactView';
 import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
 import { CaseStudyModal } from './components/CaseStudyModal';
+import { LoadingScreen } from './components/LoadingScreen';
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<PageTab>('home');
   const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
   const [preselectedService, setPreselectedService] = useState<string>('');
   const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
   const [scrollOffset, setScrollOffset] = useState<number>(0);
 
-  // Track window scroll for hero photo parallax drift
+  // Track window scroll for hero photo parallax drift with rAF throttling
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrollOffset(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollOffset(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -72,13 +80,10 @@ export default function App() {
                 scrollOffset={scrollOffset}
               />
 
-              {/* 2. Black Bar (111u) with EST 2025, SCROLL DOWN, LIVE IN DETAILS */}
-              <BarSection onScrollToManifesto={handleScrollToManifesto} />
-
-              {/* 3. Manifesto Section (170u top, 230u bottom padding) with word-by-word soft fill */}
+              {/* 2. Manifesto Section with Our Approach */}
               <ManifestoSection id="manifesto" />
 
-              {/* 4. Trust Panel (1302 x 429u) with Avatars, Awards, and Portrait Card */}
+              {/* 3. Trust Panel (1302 x 429u) */}
               <TrustSection id="trust" onOpenBooking={() => handleOpenBooking()} />
             </>
           )}
@@ -120,6 +125,11 @@ export default function App() {
         onClose={() => setSelectedCaseId(null)}
         onOpenBooking={() => handleOpenBooking(selectedCaseId || undefined)}
       />
+
+      {/* Intro Loading Page with Animated Logo */}
+      {isLoading && (
+        <LoadingScreen onComplete={() => setIsLoading(false)} />
+      )}
 
     </div>
   );

@@ -7,6 +7,44 @@ const STATEMENT_TEXT = [
   'empty', 'vanity', 'metrics.'
 ];
 
+const TIMELINE_MILESTONES = [
+  {
+    period: 'Q1 2025',
+    title: 'Inception in Bengaluru',
+    subtitle: 'Founded at Chikkalasandra, Bengaluru HQ',
+    description: 'Established with a singular vision: empowering ambitious startups with uncompromised editorial design and high-velocity digital marketing.',
+    metric: 'Day Zero',
+  },
+  {
+    period: 'Q2 2025',
+    title: 'Performance Ad Scaling',
+    subtitle: 'Direct Response & Meta / Google Ads',
+    description: 'Deployed rigorous creative testing frameworks and negative keyword sculpting, managing over ₹5M+ in monthly client ad spend profitably.',
+    metric: '4.8x ROAS Avg',
+  },
+  {
+    period: 'Q3 2025',
+    title: 'Sub-Second Web Engineering',
+    subtitle: 'Next.js & Vite Digital Platforms',
+    description: 'Pioneered blazing-fast editorial web platforms with surgical typography and interactive 3D spatial experiences achieving 100/100 Core Web Vitals.',
+    metric: '3.4x Conv. Lift',
+  },
+  {
+    period: 'Q4 2025',
+    title: 'Omnichannel Growth & WhatsApp API',
+    subtitle: 'Conversational Commerce Integration',
+    description: 'Integrated Official WhatsApp Business API automation and multi-channel lead funnels, driving a 310% average expansion in qualified enterprise pipelines.',
+    metric: '98% Open Rate',
+  },
+  {
+    period: '2026 & Present',
+    title: 'Pan-India & Global Expansion',
+    subtitle: 'Independent Elite Agency Scale',
+    description: 'Scaling category leaders across India, the Middle East, and beyond with 50+ trusted partners and enduring brand equity.',
+    metric: '56M+ Reach',
+  },
+];
+
 interface ManifestoSectionProps {
   id?: string;
 }
@@ -15,6 +53,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ id = 'manife
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [isReducedMotion, setIsReducedMotion] = useState<boolean>(false);
+  const [activeMilestone, setActiveMilestone] = useState<number>(0);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -114,7 +153,7 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ id = 'manife
         </div>
 
         {/* Detailed Approach & Strategy Content */}
-        <div className="w-full mt-10 space-y-12 border-t border-white/14 pt-16 font-inter-tight">
+        <div className="w-full mt-10 space-y-16 border-t border-white/14 pt-16 font-inter-tight">
           
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <span className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-400 block">
@@ -129,6 +168,74 @@ export const ManifestoSection: React.FC<ManifestoSectionProps> = ({ id = 'manife
             <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
               We combine data-driven marketing strategies, search engine optimization (SEO), conversion-focused website design, and performance advertising to help businesses reach the right audience and achieve measurable results. Every decision is backed by research, audience insights, and performance data.
             </p>
+          </div>
+
+          {/* Interactive Growth Timeline Component */}
+          <div className="w-full bg-neutral-950 p-8 md:p-12 rounded-2xl border border-white/14 space-y-8">
+            <div className="text-center max-w-xl mx-auto">
+              <span className="text-xs font-mono uppercase tracking-widest text-neutral-400 block mb-2">
+                Agency Evolution
+              </span>
+              <h3 className="archivo-display text-2xl sm:text-3xl font-bold text-white">
+                Interactive Growth Timeline
+              </h3>
+              <p className="text-xs text-neutral-400 mt-1 font-mono">
+                Click a milestone below to explore our journey from inception to present.
+              </p>
+            </div>
+
+            {/* Timeline Period Buttons Bar */}
+            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+              {TIMELINE_MILESTONES.map((m, index) => {
+                const isActive = activeMilestone === index;
+                return (
+                  <button
+                    key={m.period}
+                    onClick={() => setActiveMilestone(index)}
+                    className={`px-4 py-2.5 rounded-full text-xs font-mono tracking-wider transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? 'bg-white text-black font-bold shadow-lg scale-105'
+                        : 'bg-neutral-900 text-neutral-400 hover:text-white border border-white/10 hover:border-white/30'
+                    }`}
+                  >
+                    {m.period}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Active Milestone Display Card */}
+            <div className="bg-neutral-900 p-8 rounded-xl border border-white/15 relative overflow-hidden transition-all duration-500 animate-in fade-in slide-in-from-bottom-2">
+              <div className="absolute top-4 right-6 text-5xl sm:text-7xl font-archivo font-bold text-white/5 pointer-events-none select-none">
+                {TIMELINE_MILESTONES[activeMilestone].period}
+              </div>
+
+              <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                <div className="md:col-span-8 space-y-3">
+                  <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-400">
+                    <span className="w-2 h-2 rounded-full bg-white" />
+                    <span>{TIMELINE_MILESTONES[activeMilestone].period}</span>
+                    <span>·</span>
+                    <span className="text-white font-medium">{TIMELINE_MILESTONES[activeMilestone].subtitle}</span>
+                  </div>
+
+                  <h4 className="archivo-wide text-2xl sm:text-3xl font-bold text-white">
+                    {TIMELINE_MILESTONES[activeMilestone].title}
+                  </h4>
+
+                  <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                    {TIMELINE_MILESTONES[activeMilestone].description}
+                  </p>
+                </div>
+
+                <div className="md:col-span-4 flex flex-col items-center md:items-end justify-center border-t md:border-t-0 md:border-l border-white/10 pt-4 md:pt-0 md:pl-6">
+                  <span className="text-[10px] font-mono uppercase text-neutral-500 block">Milestone Impact</span>
+                  <div className="archivo-wide text-2xl sm:text-3xl font-bold text-white mt-1">
+                    {TIMELINE_MILESTONES[activeMilestone].metric}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Four Key Areas Grid */}

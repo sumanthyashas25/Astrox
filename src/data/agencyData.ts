@@ -31,6 +31,7 @@ export const ASTROX_PROFILE = {
 export const MEDIA_ASSETS = {
   moon: '/assets/aistudio/moon.webp',
   person: '/assets/aistudio/person.webp',
+  satellite: '/assets/aistudio/satellite.webp',
   heroPhoto: 'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/7dc8b8f3-4ccb-4599-8ce4-7f7c7881bad9.webp',
   capPhoto: 'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/a9d3641f-d629-46e5-8d2d-5f75386b803d.webp',
   qIndustrial: 'https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/9340eb08-877d-4d08-91fb-b70754541d98.webp',

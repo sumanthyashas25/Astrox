@@ -44,15 +44,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     return () => cancelAnimationFrame(animId);
   }, []);
 
-  // Parallax drift at 0.12x scroll
-  const photoParallax = scrollOffset * 0.12;
+  // Parallax and falling into the moon animation on scroll
+  // Normalize scroll progress across hero section (~600px range)
+  const fallProgress = Math.min(1, Math.max(0, scrollOffset / 600));
+
+  // Desktop falling physics:
+  // Astronaut shrinks from 1.0 to ~0.55 as he falls backward toward the center of the moon
+  const desktopScale = 1 - fallProgress * 0.45;
+  // Shifts towards moon center (moon is at 516u + 290u = 806u center, astronaut start center is ~796u)
+  // Astronaut descends deeper and recedes
+  const desktopYOffset = scrollOffset * 0.16 + fallProgress * 40;
+  const desktopRotate = fallProgress * 12; // slow cinematic tumbling/falling rotation
+  const desktopBlur = fallProgress > 0.7 ? (fallProgress - 0.7) * 4 : 0; // slight atmospheric immersion
+
+  // Mobile / Tablet falling physics:
+  const mobileScale = (1 - fallProgress * 0.38);
+  const mobileYOffset = scrollOffset * 0.15;
+  const mobileRotate = fallProgress * 10;
 
   return (
     <section className="relative w-full bg-[#dadada] text-[#111111] overflow-hidden select-none">
       {/* 1440 Desktop Canvas Container (>= 1024px) */}
       <div className="relative mx-auto w-full max-w-[1440px] h-[calc(938*var(--u))] hidden lg:block">
         
-        {/* Moon Behind the Person: Left 450u, Top 65u, 580 x 580u */}
+        {/* Moon Behind the Person: Left 516u, Top 170u, 580 x 580u */}
         <div
           className={`absolute pointer-events-none transition-all duration-[1500ms] ease-out ${
             isLoaded ? 'opacity-100 filter-none scale-100' : 'opacity-0 blur-md scale-95'
@@ -76,23 +91,70 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           />
         </div>
 
-        {/* Person (Astronaut) in the Front: Left 400u, Top 80u, 660 x 740u */}
+        {/* Orbiting Satellite around the Moon (Desktop) - behind person (z-12), in front of moon (z-10) */}
         <div
-          className={`absolute pointer-events-none transition-all duration-[1200ms] ease-out ${
-            isLoaded ? 'opacity-100 filter-none translate-y-0' : 'opacity-0 blur-sm translate-y-10'
+          className={`absolute pointer-events-none transition-opacity duration-1000 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            left: 'calc(516 * var(--u))',
+            top: `calc(170 * var(--u) + ${scrollOffset * 0.05}px)`,
+            width: 'calc(580 * var(--u))',
+            height: 'calc(580 * var(--u))',
+            zIndex: 11,
+          }}
+        >
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="relative w-[170px] h-[130px] animate-satellite-orbit-desktop flex items-center justify-center">
+              {/* Subtle fading motion tail behind satellite */}
+              <div
+                className="absolute pointer-events-none -top-1 -left-20 w-28 h-10 -rotate-30 origin-right animate-satellite-trail -z-10"
+                style={{
+                  background: 'radial-gradient(ellipse at 90% 50%, rgba(255,255,255,0.7) 0%, rgba(200,225,255,0.35) 30%, rgba(255,255,255,0.08) 65%, transparent 100%)',
+                  filter: 'blur(3px)',
+                }}
+              />
+              {/* Secondary faint particles along trajectory */}
+              <div
+                className="absolute pointer-events-none -top-3 -left-36 w-36 h-4 -rotate-32 origin-right -z-10"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0.5) 100%)',
+                  filter: 'blur(2px)',
+                  opacity: 0.7,
+                }}
+              />
+              <img
+                src={MEDIA_ASSETS.satellite}
+                alt="Satellite orbiting the moon"
+                className="w-full h-full object-contain filter contrast-125 brightness-110 drop-shadow-[0_10px_25px_rgba(0,0,0,0.6)]"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Person (Astronaut) in the Front: Left 466u, Top 185u with scroll-driven falling into the moon animation */}
+        <div
+          className={`absolute pointer-events-none transition-opacity duration-[1200ms] ease-out ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
             left: 'calc(466 * var(--u))',
-            top: `calc((185 * var(--u)) + ${photoParallax}px)`,
+            top: `calc((185 * var(--u)) + ${desktopYOffset}px)`,
             width: 'calc(660 * var(--u))',
             height: 'calc(740 * var(--u))',
+            transform: `scale(${desktopScale}) rotate(${desktopRotate}deg)`,
+            transformOrigin: '50% 50%',
+            filter: desktopBlur > 0 ? `blur(${desktopBlur}px)` : undefined,
+            transition: 'transform 0.1s ease-out, filter 0.1s ease-out',
             zIndex: 12,
           }}
         >
           <div className="w-full h-full animate-float-person">
             <img
               src={MEDIA_ASSETS.person}
-              alt="Astronaut floating in front of the moon"
+              alt="Astronaut floating and falling into the moon"
               className="w-full h-full object-contain filter contrast-110 drop-shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
               referrerPolicy="no-referrer"
               loading="eager"
@@ -408,8 +470,36 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             />
           </div>
 
-          {/* Person (Astronaut) in Front */}
-          <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center scale-110 md:scale-125">
+          {/* Orbiting Satellite around the Moon (Mobile / Tablet) - behind person (z-20), in front of moon (z-10) */}
+          <div className="absolute inset-0 z-11 pointer-events-none flex items-center justify-center">
+            <div className="relative w-[110px] h-[85px] animate-satellite-orbit-mobile flex items-center justify-center">
+              {/* Subtle fading motion tail behind satellite */}
+              <div
+                className="absolute pointer-events-none -top-1 -left-12 w-16 h-6 -rotate-30 origin-right animate-satellite-trail -z-10"
+                style={{
+                  background: 'radial-gradient(ellipse at 90% 50%, rgba(255,255,255,0.65) 0%, rgba(200,225,255,0.3) 30%, transparent 100%)',
+                  filter: 'blur(2px)',
+                }}
+              />
+              <img
+                src={MEDIA_ASSETS.satellite}
+                alt="Satellite orbiting the moon"
+                className="w-full h-full object-contain filter contrast-125 brightness-110 drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </div>
+
+          {/* Person (Astronaut) in Front - animated falling into moon on scroll */}
+          <div
+            className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center"
+            style={{
+              transform: `scale(${1.15 * mobileScale}) translateY(${mobileYOffset}px) rotate(${mobileRotate}deg)`,
+              transformOrigin: '50% 50%',
+              transition: 'transform 0.1s ease-out',
+            }}
+          >
             <img
               src={MEDIA_ASSETS.person}
               alt="AstroX Floating Astronaut"

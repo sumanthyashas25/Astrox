@@ -18,8 +18,28 @@ export const Navigation: React.FC<NavigationProps> = ({
 }) => {
   const [hoveredTab, setHoveredTab] = useState<PageTab | null>(null);
   const [pillStyle, setPillStyle] = useState<{ left: number; width: number }>({ left: 0, width: 0 });
+  const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date());
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key in PageTab]?: HTMLButtonElement | null }>({});
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  const dayName = days[currentDateTime.getDay()];
+  const dayNum = String(currentDateTime.getDate()).padStart(2, '0');
+  const monthNum = String(currentDateTime.getMonth() + 1).padStart(2, '0');
+  const monthName = months[currentDateTime.getMonth()];
+  const year = currentDateTime.getFullYear();
+  const timeStr = currentDateTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+  const dateDisplay = `${dayName} / ${dayNum}.${monthNum} – ${monthName} ${year} · ${timeStr}`;
 
   const navItems: { tab: PageTab; label: string }[] = [
     { tab: 'home', label: 'Home' },
@@ -112,7 +132,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               top: 'calc(70 * var(--u))',
             }}
           >
-            <span>Wednesday / 04.11 – Nov 2026</span>
+            <span>{dateDisplay}</span>
           </div>
 
           {/* Top Right Contact Us Button, 144 x 46u */}
@@ -142,9 +162,7 @@ export const Navigation: React.FC<NavigationProps> = ({
 
       {/* Mobile Header (< 1024px) */}
       <div
-        className={`lg:hidden sticky top-0 z-50 w-full backdrop-blur-md border-b px-2.5 py-2 flex items-center justify-between gap-1.5 overflow-hidden transition-colors duration-300 ${
-          activeTab === 'home' ? 'bg-[#dadada]/95 border-black/10' : 'bg-black/95 border-white/10'
-        }`}
+        className="lg:hidden sticky top-0 z-50 w-full px-2.5 py-2 flex items-center justify-between gap-1.5 overflow-hidden"
       >
         {/* Animated AstroX Logo */}
         <AstroXLogo

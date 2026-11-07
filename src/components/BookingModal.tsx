@@ -299,23 +299,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 />
               </div>
 
-              {/* Submit & WhatsApp */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
-                <button
-                  type="submit"
-                  className="w-full sm:flex-1 py-3.5 bg-white text-black hover:bg-neutral-200 rounded-full font-semibold text-sm flex items-center justify-center gap-2 btn-lift shadow-lg cursor-pointer"
-                >
-                  <span>Submit Discovery Request</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </button>
-
+              {/* WhatsApp Direct Action */}
+              <div className="pt-2">
                 <button
                   type="button"
                   onClick={handleWhatsAppRedirect}
-                  className="w-full sm:w-auto px-5 py-3.5 bg-neutral-900 hover:bg-neutral-800 text-white border border-white/15 rounded-full text-xs font-mono flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3.5 bg-[#25D366] hover:bg-[#20ba5a] text-black rounded-full font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all btn-lift"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                  <span>Chat on WhatsApp</span>
+                  <MessageCircle className="w-5 h-5 fill-current" />
+                  <span>Connect on WhatsApp (+91 99167 8506)</span>
                 </button>
               </div>
 
